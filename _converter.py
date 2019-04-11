@@ -68,7 +68,7 @@ def header():
 
 def to_mxml( the_p:[] ):
     
-    DESTINATION = 'out.musicxml'
+    DESTINATION = 'out.xml'
     
     with open(DESTINATION , 'w') as the_file:
         the_file.write(header())
