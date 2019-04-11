@@ -1,0 +1,14 @@
+lett ::= "A"|"B"|"C"|"D"|"E"|"F"|"G"
+axdl ::= "b"|"#"
+tied ::= "t"
+octv ::= "1"|"2"|"3"|"4"|"5"|"6"|"7"|"8"|"9"|"0"
+
+
+note ::= lett[axdl][tied][octv]
+
+chord ::= "[" note{";" note} "]"
+
+chdsep ::= "\n"|","
+
+file ::= chord{ chdsep chord }
+
