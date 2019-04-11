@@ -1,3 +1,7 @@
+import xml.etree.ElementTree as et
+
+
+
 OCTAVES = {"A" : (1,5),
            "B" : (),
            "C" : (),
@@ -7,6 +11,79 @@ OCTAVES = {"A" : (1,5),
            "G" : ()}
 
 ALTER = { "b" : -1, "#" : 1}
+
+
+class Progression:
+    def __init__(self, the_progression : [frozenset]):
+        self.length = len(the_progression)
+        self.first = Chord(the_progression[0])
+
+        tmp = self.first
+        for chdnum in range(1, self.length):
+            tmp.next = Chord(the_progression[chdnum])
+            tmp = tmp.next
+            
+
+class Chord:
+    def __init__(self, chd: frozenset):
+        self.next = None
+        self.notes = set(chd)
+
+
+class FileContents:
+    def __init__(self, title):
+        self.body = et.Element('score-partwise')
+
+        tmp1 = et.SubElement(self.body, 'work')
+        tmp2 = et.SubElement(tmp1, 'work-title')
+        tmp2.text = title
+
+        tmp1 = et.SubElement(self.body, 'identification')
+        tmp2 = et.SubElement(tmp1, 'creator')
+        tmp2.set('type', 'composer')
+        tmp2.text = 'Composer'
+
+        tmp2 = et.SubElement(tmp1, 'encoding')
+        tmp3 = et.SubElement(tmp2, 'software')
+        tmp3.text = "MusicMaker v2"
+        
+        tmp3 = et.SubElement(tmp2, 'encoding-date')
+        tmp3.text = "REEEEEEEEEEEEEEEE"
+
+        tmp3 = et.SubElement(tmp2, 'supports')
+        tmp3.set('element', 'accidental')
+        tmp3.set('type', 'yes')
+
+        tmp3 = et.SubElement(tmp2, 'supports')
+        tmp3.set('element', 'beam')
+        tmp3.set('type', 'yes')
+
+        tmp3 = et.SubElement(tmp2, 'supports')
+        tmp3.set('element', 'print')
+        tmp3.set('attribute', 'new-page')
+        tmp3.set('type', 'yes')
+        tmp3.set('value', 'yes')
+
+        tmp3 = et.SubElement(tmp2, 'supports')
+        tmp3.set('element', 'print')
+        tmp3.set('attribute', 'new-system')
+        tmp3.set('type', 'yes')
+        tmp3.set('value', 'yes')
+
+        tmp3 = et.SubElement(tmp2, 'supports')
+        tmp3.set('element', 'stem')
+        tmp3.set('type', 'yes')
+
+
+
+
+i = FileContents('hello').body
+print(et.tostring(i))
+
+
+
+
+
 '''  
 <note>
   <chord/>
@@ -26,43 +103,9 @@ ALTER = { "b" : -1, "#" : 1}
 # a note is defined as a letter followed optionally by # or b.
 # ^[A-G](#|b)?$
 
-
-def _pitch(note):
-    o = "        <pitch>\n"
-    for func in (_step, _alter, _octave):
-        o += func(note)
-    o += "        </pitch>\n"
-    return o
-
-def _mxml_obj( name , value):
-    return "        <" + name + ">" + value + "</" + name + ">\n"
-
-
-def _step(note):
-    return "          <step>" + note[0] + "</step>\n"
-
-def _alter(note):
-    return "          <alter>" + note[1] + "</alter>\n" if len(note) == 2 else ''
-
-def _octave(note):
-    return "          <octave>" + "4" + "</octave>\n"
-
-def _note(note):
-    s = "      <note>\n        <chord/>\n"
-    s += _pitch(note)
-    for name, value in (('duration', '2'), ('voice', '1'), ('type','half'), ('staff','1')):
-        s += _mxml_obj(name, value)
-
-    s += "      </note>\n"
-    return s
-
-
-
-
-
-
-
-
+def build_class(the_p):
+    prog = Progression(the_p)
+    return prog
 def header():
     return "--HEADER--"
 
@@ -74,5 +117,4 @@ def to_mxml( the_p:[] ):
         the_file.write(header())
         for chd in the_p:
             for note in chd:
-                the_file.write(_note(note))
-
+                pass

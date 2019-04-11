@@ -1,12 +1,12 @@
-{'Gb', 'Db', 'Bb', 'Eb'}
-{'G', 'D', 'Bb', 'Cb'}
-{'Ab', 'Db', 'Bb', 'E'}
-{'G', 'A', 'E', 'C'}
-{'B', 'A', 'F', 'E'}
-{'B', 'D', 'G'}
-{'D', 'F', 'Bb'}
-{'Gb', 'Db', 'Bb', 'Eb'}
-{'G', 'D', 'Bb', 'Cb'}
-{'Ab', 'Db', 'Bb', 'E'}
-{'G', 'A', 'E', 'C'}
-{'B', 'A', 'F', 'E'}
+frozenset({'Db', 'Ab', 'E', 'B'})
+frozenset({'A', 'G', 'E', 'C'})
+frozenset({'A', 'F', 'E', 'B'})
+frozenset({'Gb', 'D', 'B'})
+frozenset({'Bb', 'D', 'F'})
+frozenset({'A', 'G', 'E', 'C'})
+frozenset({'A', 'F', 'E', 'B'})
+frozenset({'Gb', 'D', 'B'})
+frozenset({'Bb', 'D', 'F'})
+frozenset({'Bb', 'G', 'D', 'Cb'})
+frozenset({'Db', 'Ab', 'E', 'B'})
+frozenset({'A', 'G', 'E', 'C'})

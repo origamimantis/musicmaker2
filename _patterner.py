@@ -38,6 +38,7 @@ def generate_prgsn(pattern_dict: {(str):[str]}, weight: int, total_len: int , cu
                 prgsn.append(None)
                 break
 
-    return [set(chd) for chd in prgsn][:total_len]
+    return prgsn[:total_len]
+#[set(chd) for chd in prgsn][:total_len]
 
 
