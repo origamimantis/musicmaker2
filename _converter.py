@@ -33,10 +33,18 @@ class Chord:
 class FileContents:
     def __init__(self, title):
         self.body = et.Element('score-partwise')
+        self.title = title
 
+        self._work()
+        self._identification()
+
+
+    def _work(self):
         tmp1 = et.SubElement(self.body, 'work')
         tmp2 = et.SubElement(tmp1, 'work-title')
-        tmp2.text = title
+        tmp2.text = self.title
+
+    def _identification(self):
 
         tmp1 = et.SubElement(self.body, 'identification')
         tmp2 = et.SubElement(tmp1, 'creator')
@@ -73,6 +81,39 @@ class FileContents:
         tmp3 = et.SubElement(tmp2, 'supports')
         tmp3.set('element', 'stem')
         tmp3.set('type', 'yes')
+
+    def _defaults(self):
+
+        tmp1 = et.SubElement(self.body, 'defaults')
+        
+        tmp2 = et.SubElement(tmp1, 'scaling')
+        
+        et.SubElement(tmp2, 'millimeters').text = '7.0556'
+        
+        et.SubElement(tmp2, 'tenths').text = '40'
+
+        tmp2 = et.SubElement(tmp1, 'page-layout')
+        
+        et.SubElement(tmp2, 'page-height').text = '1683.36'
+        et.SubElement(tmp2, 'page-width').text = '1190.88'
+        
+        tmp3 = et.SubElement(tmp2, 'page-margins')
+        tmp3.set('type','even')
+        et.SubElement(tmp3, 'left-margin').text = '56.6929'
+        et.SubElement(tmp3, 'right-margin').text = '56.6929'
+        et.SubElement(tmp3, 'top-margin').text = '56.6929'
+        et.SubElement(tmp3, 'bottom-margin').text = '113.386'
+        
+        tmp3 = et.SubElement(tmp2, 'page-margins')
+        tmp3.set('type','odd')
+        et.SubElement(tmp3, 'left-margin').text = '56.6929'
+        et.SubElement(tmp3, 'right-margin').text = '56.6929'
+        et.SubElement(tmp3, 'top-margin').text = '56.6929'
+        et.SubElement(tmp3, 'bottom-margin').text = '113.386'
+
+
+
+
 
 
 
