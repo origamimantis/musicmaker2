@@ -172,7 +172,7 @@ class FileContents:
         et.SubElement(tmp3, 'pan').text = '0'
 
     def _meas_header(self, uptree):
-
+        pass
 
 
 
