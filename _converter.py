@@ -111,6 +111,37 @@ class FileContents:
         et.SubElement(tmp3, 'top-margin').text = '56.6929'
         et.SubElement(tmp3, 'bottom-margin').text = '113.386'
 
+        tmp2 = et.SubElement(tmp1, 'word-font')
+        tmp2.set('font-family' , 'FreeSerif')
+        tmp2.set('font-size' , '10')
+
+        tmp2 = et.SubElement(tmp1, 'lyric-font')
+        tmp2.set('font-family' , 'FreeSerif')
+        tmp2.set('font-size' , '11')
+
+    def _credit(self):
+
+        tmp1 = et.SubElement(self.body, 'credit')
+        tmp1.set('page', '1')
+        
+        tmp2 = et.SubElement(tmp1, 'credit-words')
+        tmp2.set('default-x', '595')
+        tmp2.set('default-y', '1627')
+        tmp2.set('justify', 'center')
+        tmp2.set('valign', 'top')
+        tmp2.set('font-size', '24')
+        tmp2.text = self.title
+        
+        tmp1 = et.SubElement(self.body, 'credit')
+        tmp1.set('page', '1')
+        
+        tmp2 = et.SubElement(tmp1, 'credit-words')
+        tmp2.set('default-x', '1134')
+        tmp2.set('default-y', '1527')
+        tmp2.set('justify', 'right')
+        tmp2.set('valign', 'bottom')
+        tmp2.set('font-size', '12')
+        tmp2.text = 'Composer'
 
 
 
