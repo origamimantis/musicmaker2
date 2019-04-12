@@ -1,4 +1,10 @@
-def input_int( message , legal = lambda x: True):
+
+
+# _inputter.py - this module contains ways to ask a user to input data.
+
+
+def input_int( message:str , legal = lambda x: True) -> int:
+    '''Repeatedly asks user to enter an integer until they do, then returns the integer.'''
     while True:
         g = input(message + ": ")
         try:
@@ -10,7 +16,8 @@ def input_int( message , legal = lambda x: True):
         except ValueError:
             print(f"'{g}' is not a legal integer.")
 
-def input_yn( message , default = 'y'):
+def input_yn( message:str , default:str = 'y')-> bool:
+    '''Repeatedly asks user to enter 'y' or 'n' until they do, then returns bool matching their choice.'''
     while True:
         f = f" (default = {default})" if default != None else ''
         g = input(message + " (y/n)" +  f + "? ").strip().lower()

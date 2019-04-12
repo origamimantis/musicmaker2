@@ -1,6 +1,6 @@
 import xml.etree.ElementTree as et
 
-
+# _converter.py - this module handles encoding a chord progression into an xml file.
 
 OCTAVES = {"A" : (1,5),
            "B" : (),
@@ -37,6 +37,8 @@ class FileContents:
 
         self._work()
         self._identification()
+        self._credit()
+        self._partlist()
 
 
     def _work(self):
@@ -142,6 +144,33 @@ class FileContents:
         tmp2.set('valign', 'bottom')
         tmp2.set('font-size', '12')
         tmp2.text = 'Composer'
+
+    def _partlist(self):
+
+        tmp1 = et.SubElement(self.body, 'part-list')
+        
+        tmp2 = et.SubElement(tmp1, 'score-part')
+        tmp2.set('id', 'P1')
+        
+        et.SubElement(tmp2, 'part-name').text = 'Piano'
+        et.SubElement(tmp2, 'part-abbreviation').text = 'Pno.'
+        
+        tmp3 = et.SubElement(tmp2, 'score-instrument')
+        tmp3.set('id', 'P1-I1')
+        et.SubElement(tmp3, 'instrument-name').text = 'Piano'
+
+        tmp3 = et.SubElement(tmp2, 'midi-device')
+        tmp3.set('id', 'P1-I1')
+        tmp3.set('port','1')
+        
+        tmp3 = et.SubElement(tmp2, 'midi-instrument')
+        tmp3.set('id', 'P1-I1')
+        
+        et.SubElement(tmp3, 'midi-channel').text = '1'
+        et.SubElement(tmp3, 'midi-program').text = '1'
+        et.SubElement(tmp3, 'volume').text = '78.7402'
+        et.SubElement(tmp3, 'pan').text = '0'
+
 
 
     def the_xml(self):

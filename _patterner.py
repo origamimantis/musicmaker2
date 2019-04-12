@@ -1,9 +1,9 @@
-from collections import defaultdict, deque
 from random import choice as randchoice
 
 
 
-            
+# _patterner.py - this module contains (one) function(s?) to generate a chord progression,
+#                 by looking at the n latest chords and choosing a chord to follow it.
 
 
 def patt_as_str(pattern_dict : {(str):[str]}) -> str:
@@ -15,7 +15,7 @@ def patt_as_str(pattern_dict : {(str):[str]}) -> str:
 
 
 def generate_prgsn(pattern_dict: {(str):[str]}, weight: int, total_len: int , curl: bool = False) -> [str]:
-    '''Generates and returns list of chord progressions; with option to continue if next chord isn't found.'''
+    '''Generates and returns list of chord progressions; option to continue if next chord isn't found.'''
     
     prgsn = list(randchoice(tuple(pattern_dict.keys())))
    

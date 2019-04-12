@@ -2,6 +2,10 @@ from collections import defaultdict, deque
 from pathlib import Path
 
 
+
+# _reader.py - this module handles the parsing of files containing chord progressions
+#              and stores them in a dictionary-like object using frozensets as keys.
+
 def chord_gen(file : open):
     '''Generator that yields each chord in a file.'''
 
