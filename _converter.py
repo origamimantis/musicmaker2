@@ -171,6 +171,18 @@ class FileContents:
         et.SubElement(tmp3, 'volume').text = '78.7402'
         et.SubElement(tmp3, 'pan').text = '0'
 
+    def _meas_header(self, uptree):
+
+
+
+
+
+
+    def _add_chords(self):
+        tmp1 = et.SubElement(self.body, 'part')
+        tmp1.set('id', 'P1' if is_chord else 'P2')
+
+        tmp2 = et.SubElement(tmp1, 'measure')
 
 
     def the_xml(self):
