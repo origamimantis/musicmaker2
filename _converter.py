@@ -144,15 +144,12 @@ class FileContents:
         tmp2.text = 'Composer'
 
 
+    def the_xml(self):
+        return '<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 3.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">'+ et.tostring(self.body).decode()
 
-
-
-
-
-i = FileContents('hello').body
-print(et.tostring(i))
-
-
+k = FileContents(title = 'hello')
+with open('testxml.xml', 'w') as the_file:
+    the_file.write(k.the_xml())
 
 
 
