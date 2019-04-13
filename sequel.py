@@ -2,7 +2,7 @@ from collections import defaultdict
 from _reader     import parse_file, update_dict
 from _patterner  import patt_as_str, generate_prgsn
 from _inputter   import input_int, input_yn
-from _converter  import to_mxml, build_class
+from _converter  import to_mxml, build_class, FileContents
 
 FILE_NAME = 'out.txt'
 
@@ -32,12 +32,19 @@ if __name__ == '__main__':
     if input_yn("Print results to console" , default = 'n'):
         print("Random progression =", the_progression)
     print()
+    
     p=build_class(the_progression)   
     k = p.first
+    
     while k is not None:
         print(k.notes)
         k = k.next
     to_mxml(the_progression)   
+    
+    k = FileContents(title = 'hello', progression=p)
+    with open('testxml.xml', 'w') as the_file:
+        the_file.write(k.the_xml())
+    
     write_bool = input_yn("Write progression to file" , default = 'y')
     
     print()

@@ -31,7 +31,7 @@ class Chord:
 
 
 class FileContents:
-    def __init__(self, title):
+    def __init__(self, title, progression):
         self.body = et.Element('score-partwise')
         self.title = title
 
@@ -39,6 +39,14 @@ class FileContents:
         self._identification()
         self._credit()
         self._partlist()
+        subpart = self._add_part(True)
+        curr = progression.first
+        meas = 1
+        while curr is not None:
+
+            self._add_chords(meas, curr, subpart, True)
+            meas += 1
+            curr = curr.next
 
 
     def _work(self):
@@ -171,26 +179,57 @@ class FileContents:
         et.SubElement(tmp3, 'volume').text = '78.7402'
         et.SubElement(tmp3, 'pan').text = '0'
 
-    def _meas_header(self, uptree):
+    def _meas_header(self, uptree, is_chord):
+        tmp3 = et.SubElement(uptree, 'print')
+        tmp4 = et.SubElement(tmp3, 'system_layout')
+        tmp5 = et.SubElement(tmp4, 'system_margins')
+        et.SubElement(tmp5, 'left-margin').text = '0.00'
+        et.SubElement(tmp5, 'right-margin').text = '0.00'
+        et.SubElement(tmp4, 'top-system-distance').text = '170.00'
+
+        tmp3 = et.SubElement(uptree, 'attributes')
+        et.SubElement(tmp3, 'divisions').text = '1'
+
+        tmp4 = et.SubElement(tmp3, 'key')
+        et.SubElement(tmp4, 'fifths').text = '0'
+
+        tmp4 = et.SubElement(tmp3, 'time')
+        et.SubElement(tmp4, 'beats').text = '4'
+        et.SubElement(tmp4, 'beat-type').text = '4'
+
+        tmp4 = et.SubElement(tmp3, 'clef')
+        et.SubElement(tmp4, 'sign').text = 'G' if is_chord else 'F'
+        et.SubElement(tmp4, 'line').text = '2' if is_chord else '4'
+
+    def _add_part(self, is_chord):
+
+        tmp1 = et.SubElement(self.body, 'part')
+        tmp1.set('id', 'P1' if is_chord else 'P2')
+        return tmp1
+
+
+    def _add_chords(self, measnum:int, chd, uptree, is_chord:bool):
+
+        tmp2 = et.SubElement(uptree, 'measure')
+        tmp2.set('number' , str(measnum))
+        tmp2.set('width' , '320')
+        if measnum == 1: self._meas_header(tmp2, is_chord)  
+
+        #self.add_notes()
+
+
+    def _add_notes(self):
         pass
 
 
 
 
-
-    def _add_chords(self):
-        tmp1 = et.SubElement(self.body, 'part')
-        tmp1.set('id', 'P1' if is_chord else 'P2')
-
-        tmp2 = et.SubElement(tmp1, 'measure')
-
-
     def the_xml(self):
         return '<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 3.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">'+ et.tostring(self.body).decode()
 
-k = FileContents(title = 'hello')
-with open('testxml.xml', 'w') as the_file:
-    the_file.write(k.the_xml())
+
+
+
 
 
 
