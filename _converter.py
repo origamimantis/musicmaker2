@@ -1,17 +1,19 @@
 import datetime
 import xml.etree.ElementTree as et
+from random import randint
+
 
 # _converter.py - this module handles encoding a chord progression into an xml file.
 
-OCTAVES = {"A" : (1,5),
-           "B" : (),
-           "C" : (),
-           "D" : (),
-           "E" : (),
-           "F" : (),
-           "G" : ()}
+OCTAVES = {"A" : (2,3),
+           "B" : (2,3),
+           "C" : (3,4),
+           "D" : (3,4),
+           "E" : (3,3),
+           "F" : (3,3),
+           "G" : (3,3)}
 
-ALTER = { "b" : '-1', "#" : '1'}
+ALTER = { "b" : '-1', "#" : '1' , "%" : '-2' , "x" : '2'}
 
 
 class Progression:
@@ -199,8 +201,8 @@ class FileContents:
         et.SubElement(tmp4, 'beat-type').text = '4'
 
         tmp4 = et.SubElement(tmp3, 'clef')
-        et.SubElement(tmp4, 'sign').text = 'G' if is_chord else 'F'
-        et.SubElement(tmp4, 'line').text = '2' if is_chord else '4'
+        et.SubElement(tmp4, 'sign').text = 'F' if is_chord else 'G'
+        et.SubElement(tmp4, 'line').text = '4' if is_chord else '2'
 
     def _add_part(self, is_chord):
 
@@ -238,7 +240,7 @@ class FileContents:
             if len(note) == 2:
                 et.SubElement(tmp4, 'alter').text = ALTER[note[1]]
             
-            et.SubElement(tmp4, 'octave').text = '5'
+            et.SubElement(tmp4, 'octave').text = str(randint(*OCTAVES[note[0]]))
             
             et.SubElement(tmp3, 'duration').text = '2'
             et.SubElement(tmp3, 'voice').text = '1'
