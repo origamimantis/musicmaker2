@@ -252,7 +252,7 @@ class FileContents:
 
 
     def the_xml(self):
-        return '<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 3.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">' + '>\n<'.join(et.tostring(self.body).decode().split('><'))
+        return '<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 3.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">' + et.tostring(self.body).decode()
 
 
 
