@@ -1,6 +1,5 @@
 from collections import defaultdict
-from _reader     import parse_file, update_dict
-from _patterner  import patt_as_str, generate_prgsn
+from _reader     import parse_file, update_dict, generate_prgsn
 from _inputter   import input_int, input_yn
 from _converter  import to_mxml, build_class, FileContents
 
@@ -15,15 +14,12 @@ if __name__ == '__main__':
 
     update_dict( pattern_dict , weight )    
 
-    print("Possible Progressions\n" + patt_as_str(pattern_dict))
-
-
-    words_len = input_int("Choose number of chords in the progression", legal = (lambda x: x >= weight))
+    prog_len = input_int("Choose number of chords in the progression", legal = (lambda x: x >= weight))
 
     print("Generating progression...\n")
 
     try:
-        the_progression = generate_prgsn(pattern_dict, weight, words_len, True)
+        the_progression = generate_prgsn(pattern_dict, weight, prog_len, True)
     except IndexError:
         the_progression  = None
    
