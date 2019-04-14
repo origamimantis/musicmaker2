@@ -24,14 +24,10 @@ if __name__ == '__main__':
         the_progression  = None
    
     print("Progression generated successfully!\n")
-    if input_yn("Print results to console" , default = 'n'):
-        print("Random progression =", the_progression)
-    print()
     
-    p=build_class(the_progression)   
-    k = p.first
+    p = build_class(the_progression)   
     
-    k = FileContents(title = 'hello', progression=p)
+    k = FileContents(title = 'hello', progression = p)
    
     with open('testxml.xml', 'w') as the_file:
         the_file.write(k.the_xml())
