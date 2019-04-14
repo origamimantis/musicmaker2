@@ -20,7 +20,7 @@ def input_yn( message:str , default:str = 'Yes')-> bool:
     '''Repeatedly asks user to enter 'y' or 'n' until they do, then returns bool matching their choice.'''
     while True:
         f = f" (default = {default})" if default != None else ''
-        g = input(message + " (y/n)" +  f + "? ").strip().lower()
+        g = input(message + " (Y/N)" +  f + "? ").strip().lower()
         if g == '': g = default.strip().lower()
         if g in ('y','yes','n','no'):
             return g in ('y','yes')
