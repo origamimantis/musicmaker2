@@ -42,6 +42,7 @@ if __name__ == '__main__':
     to_mxml(the_progression)   
     
     k = FileContents(title = 'hello', progression=p)
+   
     with open('testxml.xml', 'w') as the_file:
         the_file.write(k.the_xml())
     

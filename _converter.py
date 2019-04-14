@@ -1,3 +1,4 @@
+import datetime
 import xml.etree.ElementTree as et
 
 # _converter.py - this module handles encoding a chord progression into an xml file.
@@ -10,7 +11,7 @@ OCTAVES = {"A" : (1,5),
            "F" : (),
            "G" : ()}
 
-ALTER = { "b" : -1, "#" : 1}
+ALTER = { "b" : '-1', "#" : '1'}
 
 
 class Progression:
@@ -66,7 +67,7 @@ class FileContents:
         tmp3.text = "MusicMaker v2"
         
         tmp3 = et.SubElement(tmp2, 'encoding-date')
-        tmp3.text = "REEEEEEEEEEEEEEEE"
+        tmp3.text = str(datetime.date.today())
 
         tmp3 = et.SubElement(tmp2, 'supports')
         tmp3.set('element', 'accidental')
@@ -181,8 +182,8 @@ class FileContents:
 
     def _meas_header(self, uptree, is_chord):
         tmp3 = et.SubElement(uptree, 'print')
-        tmp4 = et.SubElement(tmp3, 'system_layout')
-        tmp5 = et.SubElement(tmp4, 'system_margins')
+        tmp4 = et.SubElement(tmp3, 'system-layout')
+        tmp5 = et.SubElement(tmp4, 'system-margins')
         et.SubElement(tmp5, 'left-margin').text = '0.00'
         et.SubElement(tmp5, 'right-margin').text = '0.00'
         et.SubElement(tmp4, 'top-system-distance').text = '170.00'
@@ -214,19 +215,42 @@ class FileContents:
         tmp2.set('number' , str(measnum))
         tmp2.set('width' , '320')
         if measnum == 1: self._meas_header(tmp2, is_chord)  
+        
 
-        #self.add_notes()
+        self._add_notes(chd, tmp2)
 
 
-    def _add_notes(self):
-        pass
+    def _add_notes(self, chd, up):
+        objchd = False
+        
+        for note in chd.notes:
+            tmp3 = et.SubElement(up, 'note')
+            if objchd:
+                h = et.SubElement(tmp3, 'chord')
+         
+                
+            objchd = True
+            
+            tmp4 = et.SubElement(tmp3, 'pitch')
+          
+            et.SubElement(tmp4, 'step').text = note[0]
+           
+            if len(note) == 2:
+                et.SubElement(tmp4, 'alter').text = ALTER[note[1]]
+            
+            et.SubElement(tmp4, 'octave').text = '5'
+            
+            et.SubElement(tmp3, 'duration').text = '2'
+            et.SubElement(tmp3, 'voice').text = '1'
+            et.SubElement(tmp3, 'type').text = 'half'
+                
+                
 
 
 
 
     def the_xml(self):
-        return '<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 3.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">'+ et.tostring(self.body).decode()
-
+        return '<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 3.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">' + '>\n<'.join(et.tostring(self.body).decode().split('><'))
 
 
 
