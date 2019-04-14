@@ -29,8 +29,13 @@ if __name__ == '__main__':
     
     k = FileContents(title = 'hello', progression = p)
    
-    with open('testxml.xml', 'w') as the_file:
-        the_file.write(k.the_xml())
+    with open('out.xml', 'w') as the_file:
+        try:
+            the_file.write(k.the_xml())
+            print('Written uccessfully to out.xml.\n')
+        except:
+            print('Error occurred.\n')
+        
     
     print('Done.')
     
