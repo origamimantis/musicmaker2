@@ -20,11 +20,18 @@ ACCID = {'' :  0,
          '%': -2,
          'x':  2}
 
+# ACCIDW uses -1 === 11 mod 12 and -2 === 10 mod 12.
 
 ACCIDW = { 0:'',
+
+          11:'b',
           -1:'b',
+
            1:'#',
+
+          10:'%',
           -2:'%',
+
            2:'x'}
 
 
@@ -44,6 +51,7 @@ def _translated(chord):
         raise ChordsTranslateError
     
     base = NOTE_IDX[chord[0]]
+    bsidx = NOTE_ORD.index(chord[0])
     chdt = chord[1:]
     if chord[1] in 'b#%x':
         base += ACCID[chord[1]]
@@ -56,9 +64,11 @@ def _translated(chord):
     notelist = []
 
     for x in range(len(ind)):
-        current_note  = (base + rel[x])%7
-        accid = ind[x] - rel[x]
-        notelist.append( NOTE_ORD[current_note])
+        
+        visnote = NOTE_ORD[(bsidx + rel[x] )%7]
+        notelist.append( visnote + ACCIDW[(base + ind[x])%12 - NOTE_IDX[visnote]])
+        
+
 
 
     return '{' + ';'.join(notelist) + '}\n'
@@ -72,7 +82,8 @@ def _parse(line):
     parsed_line = ''
     
     for chord in the_list:
-        parsed_line += _translated(chord)
+        if chord != '':
+            parsed_line += _translated(chord)
     return parsed_line
 
 
@@ -83,7 +94,7 @@ def read( directory = 'to_convert' ):
             for line in old_f:
                 try:
                     new_f.write(_parse(line.strip()))
-                except StopIteration:
+                except StopIteration: #(KeyError, ChordsTranslateError):
                     print(f'Error parsing {filename.name}. Attempting next file, if it exists.')
                     break
 read()
