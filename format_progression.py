@@ -93,7 +93,7 @@ def read( directory = 'to_convert' ):
         
         altpath = Path('files') / Path(filename.name)
         if altpath in Path('files').iterdir() and not input_yn(f'Overwrite {filename.name}?', 'No'):
-            print(f'Skipped file {filename.name}, Continuing to next file, if it exists.')
+            print(f'Skipped file {filename.name}; continuing to next file, if it exists.')
             continue
         with open(filename, 'r') as old_f, open(altpath, 'w') as new_f:
             for line in old_f:
