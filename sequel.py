@@ -1,5 +1,5 @@
 from collections import defaultdict
-from _reader     import parse_file, update_dict, generate_prgsn
+from _reader     import update_dict, generate_prgsn
 from _inputter   import input_int, input_yn
 from _converter  import to_mxml, build_class, FileContents
 
@@ -14,31 +14,34 @@ if __name__ == '__main__':
 
     update_dict( pattern_dict , weight )    
 
-    prog_len = input_int("Choose number of chords in the progression", legal = (lambda x: x >= weight))
+    pattern_dict = dict(pattern_dict)
 
-    print("Generating progression...\n")
+    if pattern_dict == {}:
+        print('No files were processed, so generating a progression is impossible.')
+    
+    else:
+        prog_len = input_int("Choose number of chords in the progression", legal = (lambda x: x >= weight))
 
-    try:
+        print("Generating progression...\n")
+
         the_progression = generate_prgsn(pattern_dict, weight, prog_len, True)
-    except IndexError:
-        the_progression  = None
-   
-    print("Progression generated successfully!\n")
-    
-    p = build_class(the_progression)   
-    
-    k = FileContents(title = 'hello', progression = p)
-   
-    with open('out.xml', 'w') as the_file:
-        try:
-            the_file.write(k.the_xml())
-            print('Written uccessfully to out.xml.\n')
-        except:
-            print('Error occurred.\n')
+       
+        print("Progression generated successfully!\n")
         
-    
-    print('Done.')
-    
+        p = build_class(the_progression)   
+        
+        k = FileContents(title = 'hello', progression = p)
+       
+        with open('out.xml', 'w') as the_file:
+            try:
+                the_file.write(k.the_xml())
+                print('Written successfully to out.xml.\n')
+            except:
+                print('Error occurred.\n')
+            
+        
+        print('Done.')
+        
 
 
 

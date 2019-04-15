@@ -12,7 +12,8 @@ def parse_file(pattern_dict: defaultdict , weight : int, the_file : open) -> {(s
     '''Reads a given file and generates a dictionary mapping partial progressions to possible chords.'''
     
     gen = _chord_gen(the_file)
-    
+   
+    # Will raise RuntimeError (StopIteration) if weight > #chords in file.
     current_phrase = deque((next(gen) for x in range(weight)) , maxlen = weight)
     
     for chord in gen:
@@ -23,48 +24,48 @@ def parse_file(pattern_dict: defaultdict , weight : int, the_file : open) -> {(s
         current_phrase.append(chord)
 
 
-def _chord_gen(file : open):
+def _chord_gen(the_file : open):
     '''Generator that yields each chord in a file.'''
 
-    for line in file:
+    for line in the_file:
         for item in line.split(','):
             yield frozenset(item.strip()[1:-1].split(';'))
 
 
 def update_dict(pattern_dict, weight, directory = "files"):
     
+    failed = False
     for progfile in Path(directory).iterdir():
 
         with open(progfile, 'r') as the_file:
             try:
                 parse_file( pattern_dict, weight, the_file)
             except RuntimeError:
-                pass
-
+                failed = True
+                print(f'{progfile.name} was not parsed because it has less chords in it than the specified weight.')
+    if failed: print()
 
 def generate_prgsn(pattern_dict: {(str):[str]}, weight: int, total_len: int , curl: bool = False) -> [str]:
     '''Generates and returns list of chord progressions; option to continue if next chord isn't found.'''
     
     prgsn = list(randchoice(tuple(pattern_dict.keys())))
-   
-    c = weight
+    failed = False 
 
-    while c < total_len:
+    while len(prgsn) < total_len:
         try:
             k =  randchoice(tuple(pattern_dict[  tuple(prgsn[-weight:])  ]  ))
             prgsn.append(k)
-            c += 1
-            
-        except IndexError:
+        
+        # IndexError because at this point pattern_dict is a dict and not a dict, and 
+        except KeyError:
+            failed = True
+            print(f'Unable to find next chord at chord {len(prgsn)} based on current chords, choosing new seed.')
             if curl:
                 h =   randchoice( tuple( pattern_dict.keys() ))
                 prgsn.extend(h)
                 
-                
-                c += weight 
-            else:
-                prgsn.append(None)
-                break
+            else: break
+    if failed: print()
 
     return prgsn[:total_len]
 
