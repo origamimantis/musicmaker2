@@ -3,7 +3,7 @@
 # _inputter.py - this module contains ways to ask a user to input data.
 
 
-def input_int( message:str , legal = lambda x: True) -> int:
+def input_int( message:str , legal = lambda x: True, error_msg = None) -> int:
     '''Repeatedly asks user to enter an integer until they do, then returns the integer.'''
     while True:
         g = input(message + ": ")
@@ -11,10 +11,10 @@ def input_int( message:str , legal = lambda x: True) -> int:
             f = int(g)
             if legal(f):
                 return f
-            print(f"'{g}' is not a legal integer.")
+            print(f"Entered: '{g}' | Error: not a legal integer." if error_msg is None else f"Entered: '{g}' | Error: " + error_msg + '\n')
 
         except ValueError:
-            print(f"'{g}' is not a legal integer.")
+            print(f"Entered: '{g}' | Error: not an integer.")
 
 def input_yn( message:str , default:str = 'Yes')-> bool:
     '''Repeatedly asks user to enter 'y' or 'n' until they do, then returns bool matching their choice.'''

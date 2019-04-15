@@ -19,12 +19,14 @@ ALTER = { "b" : '-1', "#" : '1' , "%" : '-2' , "x" : '2'}
 class Progression:
     def __init__(self, the_progression : [frozenset]):
         self.length = len(the_progression)
+        lenth = len(str(self.length))
         self.first = Chord(the_progression[0])
-
+        print(f'Chords processed: %{lenth}s / {self.length}' % 1 , end = '\r')
         tmp = self.first
         for chdnum in range(1, self.length):
             tmp.next = Chord(the_progression[chdnum])
             tmp = tmp.next
+            print(f'Processed chord %{lenth}s / {self.length}' % (chdnum+1) , end = '\r')
             
 
 class Chord:
@@ -252,7 +254,19 @@ class FileContents:
 
 
     def the_xml(self):
-        return '<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 3.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">' + '>\n<'.join(et.tostring(self.body).decode().split('><'))
+        print('Converting chords to text...\n')
+        xml_list = et.tostring(self.body).decode().split('><')
+        print('Writing to out.txt...\n')
+        yield len(xml_list) + 2
+        yield '<?xml version="1.0" encoding="UTF-8"?>'
+        yield '<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 3.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">'
+        for line in xml_list:
+            if not line.startswith('<'):
+                line = '<' + line
+            if not line.endswith('>'):
+                line += '>'
+            yield line
+
 
 
 
