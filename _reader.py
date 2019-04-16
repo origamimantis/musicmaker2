@@ -37,12 +37,13 @@ def update_dict(pattern_dict, weight, directory = "files"):
     failed = False
     for progfile in Path(directory).iterdir():
 
-        with open(progfile, 'r') as the_file:
-            try:
-                parse_file( pattern_dict, weight, the_file)
-            except RuntimeError:
-                failed = True
-                print(f'{progfile.name} was not parsed because it has less chords in it than the specified weight.')
+        if progfile.is_file():
+            with open(progfile, 'r') as the_file:
+                try:
+                    parse_file( pattern_dict, weight, the_file)
+                except RuntimeError:
+                    failed = True
+                    print(f'{progfile.name} was not parsed because it has less chords in it than the specified weight.')
     if failed: print()
 
 def generate_prgsn(pattern_dict: {(str):[str]}, weight: int, total_len: int , curl: bool = False) -> [str]:

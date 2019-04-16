@@ -41,7 +41,9 @@ ACCIDW = { 0:'',
 CHORDS = {'maj7' :  ( (0, 4, 7, 11) , (0, 2, 4, 6) ) ,
           '7'    :  ( (0, 4, 7, 10) , (0, 2, 4, 6) ) ,
           '-7'   :  ( (0, 3, 7, 10) , (0, 2, 4, 6) ) ,
-          '-7b5' :  ( (0, 3, 6, 10) , (0, 2, 4, 6) ) }
+          '-7b5' :  ( (0, 3, 6, 10) , (0, 2, 4, 6) ) ,
+          ''     :  ( (0, 4, 7)     , (0, 2, 4)    ) ,
+          'm'    :  ( (0, 3, 7)     , (0, 2, 4)    ) }
 
 
 class ChordsTranslateError(Exception):
@@ -54,11 +56,14 @@ def _translated(chord):
     base = NOTE_IDX[chord[0]]
     bsidx = NOTE_ORD.index(chord[0])
     chdt = chord[1:]
-    if chord[1] in 'b#%x':
-        base += ACCID[chord[1]]
-        chdt = chord[2:]
-
-    
+    try:
+        if chord[1] in 'b#%x':
+            base += ACCID[chord[1]]
+            chdt = chord[2:]
+    # means it's a major chord w/o accidental, like G or A
+    except IndexError:
+        chdt = ''
+        
 
     ind, rel = CHORDS[chdt]
 

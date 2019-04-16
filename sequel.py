@@ -41,7 +41,7 @@ if __name__ == '__main__':
                 count = 1
                 for line in xmlgen:
                     the_file.write(line + '\n')
-                    print(f'Lines written: %{lenth}s / {numlines}' % count , end = '\r')
+                    print(f'Lines written: %{lenth}s / {numlines}    ' % count , end = '\r')
                     count += 1
 
                 print('\n\nWritten successfully to out.xml.\n')

@@ -1,4 +1,6 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 3.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd"><score-partwise>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 3.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise>
 <work>
 <work-title>hello</work-title>
 </work>
@@ -6,7 +8,7 @@
 <creator type="composer">Composer</creator>
 <encoding>
 <software>MusicMaker v2</software>
-<encoding-date>2019-04-14</encoding-date>
+<encoding-date>2019-04-15</encoding-date>
 <supports element="accidental" type="yes" />
 <supports element="beam" type="yes" />
 <supports attribute="new-page" element="print" type="yes" value="yes" />
@@ -63,8 +65,8 @@
 </attributes>
 <note>
 <pitch>
-<step>B</step>
-<alter>-1</alter>
+<step>G</step>
+<alter>1</alter>
 <octave>3</octave>
 </pitch>
 <duration>2</duration>
@@ -74,8 +76,17 @@
 <note>
 <chord />
 <pitch>
+<step>B</step>
+<octave>2</octave>
+</pitch>
+<duration>2</duration>
+<voice>1</voice>
+<type>half</type>
+</note>
+<note>
+<chord />
+<pitch>
 <step>E</step>
-<alter>-1</alter>
 <octave>3</octave>
 </pitch>
 <duration>2</duration>
@@ -92,8 +103,9 @@
 <voice>1</voice>
 <type>half</type>
 </note>
+</measure>
+<measure number="2" width="320">
 <note>
-<chord />
 <pitch>
 <step>G</step>
 <octave>3</octave>
@@ -102,9 +114,18 @@
 <voice>1</voice>
 <type>half</type>
 </note>
-</measure>
-<measure number="2" width="320">
 <note>
+<chord />
+<pitch>
+<step>D</step>
+<octave>3</octave>
+</pitch>
+<duration>2</duration>
+<voice>1</voice>
+<type>half</type>
+</note>
+<note>
+<chord />
 <pitch>
 <step>E</step>
 <alter>-1</alter>
@@ -117,28 +138,7 @@
 <note>
 <chord />
 <pitch>
-<step>A</step>
-<alter>-1</alter>
-<octave>3</octave>
-</pitch>
-<duration>2</duration>
-<voice>1</voice>
-<type>half</type>
-</note>
-<note>
-<chord />
-<pitch>
-<step>C</step>
-<octave>4</octave>
-</pitch>
-<duration>2</duration>
-<voice>1</voice>
-<type>half</type>
-</note>
-<note>
-<chord />
-<pitch>
-<step>G</step>
+<step>B</step>
 <alter>-1</alter>
 <octave>3</octave>
 </pitch>
@@ -150,28 +150,7 @@
 <measure number="3" width="320">
 <note>
 <pitch>
-<step>B</step>
-<alter>-1</alter>
-<octave>2</octave>
-</pitch>
-<duration>2</duration>
-<voice>1</voice>
-<type>half</type>
-</note>
-<note>
-<chord />
-<pitch>
-<step>D</step>
-<octave>4</octave>
-</pitch>
-<duration>2</duration>
-<voice>1</voice>
-<type>half</type>
-</note>
-<note>
-<chord />
-<pitch>
-<step>F</step>
+<step>G</step>
 <octave>3</octave>
 </pitch>
 <duration>2</duration>
@@ -181,7 +160,28 @@
 <note>
 <chord />
 <pitch>
-<step>G</step>
+<step>A</step>
+<octave>2</octave>
+</pitch>
+<duration>2</duration>
+<voice>1</voice>
+<type>half</type>
+</note>
+<note>
+<chord />
+<pitch>
+<step>E</step>
+<alter>-1</alter>
+<octave>3</octave>
+</pitch>
+<duration>2</duration>
+<voice>1</voice>
+<type>half</type>
+</note>
+<note>
+<chord />
+<pitch>
+<step>C</step>
 <octave>3</octave>
 </pitch>
 <duration>2</duration>
@@ -192,31 +192,9 @@
 <measure number="4" width="320">
 <note>
 <pitch>
-<step>B</step>
+<step>A</step>
 <alter>-1</alter>
-<octave>3</octave>
-</pitch>
-<duration>2</duration>
-<voice>1</voice>
-<type>half</type>
-</note>
-<note>
-<chord />
-<pitch>
-<step>D</step>
-<alter>-1</alter>
-<octave>4</octave>
-</pitch>
-<duration>2</duration>
-<voice>1</voice>
-<type>half</type>
-</note>
-<note>
-<chord />
-<pitch>
-<step>F</step>
-<alter>-1</alter>
-<octave>3</octave>
+<octave>2</octave>
 </pitch>
 <duration>2</duration>
 <voice>1</voice>
@@ -227,6 +205,27 @@
 <pitch>
 <step>G</step>
 <alter>-1</alter>
+<octave>3</octave>
+</pitch>
+<duration>2</duration>
+<voice>1</voice>
+<type>half</type>
+</note>
+<note>
+<chord />
+<pitch>
+<step>E</step>
+<alter>-1</alter>
+<octave>3</octave>
+</pitch>
+<duration>2</duration>
+<voice>1</voice>
+<type>half</type>
+</note>
+<note>
+<chord />
+<pitch>
+<step>C</step>
 <octave>3</octave>
 </pitch>
 <duration>2</duration>
@@ -237,30 +236,8 @@
 <measure number="5" width="320">
 <note>
 <pitch>
-<step>C</step>
+<step>G</step>
 <octave>3</octave>
-</pitch>
-<duration>2</duration>
-<voice>1</voice>
-<type>half</type>
-</note>
-<note>
-<chord />
-<pitch>
-<step>E</step>
-<alter>-1</alter>
-<octave>3</octave>
-</pitch>
-<duration>2</duration>
-<voice>1</voice>
-<type>half</type>
-</note>
-<note>
-<chord />
-<pitch>
-<step>A</step>
-<alter>-1</alter>
-<octave>2</octave>
 </pitch>
 <duration>2</duration>
 <voice>1</voice>
@@ -276,12 +253,10 @@
 <voice>1</voice>
 <type>half</type>
 </note>
-</measure>
-<measure number="6" width="320">
 <note>
+<chord />
 <pitch>
-<step>C</step>
-<alter>-1</alter>
+<step>D</step>
 <octave>4</octave>
 </pitch>
 <duration>2</duration>
@@ -291,7 +266,7 @@
 <note>
 <chord />
 <pitch>
-<step>E</step>
+<step>B</step>
 <alter>-1</alter>
 <octave>3</octave>
 </pitch>
@@ -299,12 +274,13 @@
 <voice>1</voice>
 <type>half</type>
 </note>
+</measure>
+<measure number="6" width="320">
 <note>
-<chord />
 <pitch>
-<step>B</step>
-<alter>-2</alter>
-<octave>2</octave>
+<step>F</step>
+<alter>-1</alter>
+<octave>3</octave>
 </pitch>
 <duration>2</duration>
 <voice>1</voice>
@@ -321,9 +297,19 @@
 <voice>1</voice>
 <type>half</type>
 </note>
-</measure>
-<measure number="7" width="320">
 <note>
+<chord />
+<pitch>
+<step>D</step>
+<alter>-1</alter>
+<octave>4</octave>
+</pitch>
+<duration>2</duration>
+<voice>1</voice>
+<type>half</type>
+</note>
+<note>
+<chord />
 <pitch>
 <step>B</step>
 <alter>-1</alter>
@@ -333,8 +319,96 @@
 <voice>1</voice>
 <type>half</type>
 </note>
+</measure>
+<measure number="7" width="320">
+<note>
+<pitch>
+<step>A</step>
+<octave>2</octave>
+</pitch>
+<duration>2</duration>
+<voice>1</voice>
+<type>half</type>
+</note>
 <note>
 <chord />
+<pitch>
+<step>F</step>
+<octave>3</octave>
+</pitch>
+<duration>2</duration>
+<voice>1</voice>
+<type>half</type>
+</note>
+<note>
+<chord />
+<pitch>
+<step>E</step>
+<alter>-1</alter>
+<octave>3</octave>
+</pitch>
+<duration>2</duration>
+<voice>1</voice>
+<type>half</type>
+</note>
+<note>
+<chord />
+<pitch>
+<step>C</step>
+<octave>3</octave>
+</pitch>
+<duration>2</duration>
+<voice>1</voice>
+<type>half</type>
+</note>
+</measure>
+<measure number="8" width="320">
+<note>
+<pitch>
+<step>A</step>
+<alter>-1</alter>
+<octave>3</octave>
+</pitch>
+<duration>2</duration>
+<voice>1</voice>
+<type>half</type>
+</note>
+<note>
+<chord />
+<pitch>
+<step>C</step>
+<alter>-1</alter>
+<octave>4</octave>
+</pitch>
+<duration>2</duration>
+<voice>1</voice>
+<type>half</type>
+</note>
+<note>
+<chord />
+<pitch>
+<step>F</step>
+<alter>-1</alter>
+<octave>3</octave>
+</pitch>
+<duration>2</duration>
+<voice>1</voice>
+<type>half</type>
+</note>
+<note>
+<chord />
+<pitch>
+<step>E</step>
+<alter>-1</alter>
+<octave>3</octave>
+</pitch>
+<duration>2</duration>
+<voice>1</voice>
+<type>half</type>
+</note>
+</measure>
+<measure number="9" width="320">
+<note>
 <pitch>
 <step>A</step>
 <alter>-1</alter>
@@ -364,87 +438,11 @@
 <voice>1</voice>
 <type>half</type>
 </note>
-</measure>
-<measure number="8" width="320">
 <note>
+<chord />
 <pitch>
-<step>C</step>
+<step>B</step>
 <alter>-1</alter>
-<octave>3</octave>
-</pitch>
-<duration>2</duration>
-<voice>1</voice>
-<type>half</type>
-</note>
-<note>
-<chord />
-<pitch>
-<step>F</step>
-<alter>-1</alter>
-<octave>3</octave>
-</pitch>
-<duration>2</duration>
-<voice>1</voice>
-<type>half</type>
-</note>
-<note>
-<chord />
-<pitch>
-<step>A</step>
-<alter>-1</alter>
-<octave>2</octave>
-</pitch>
-<duration>2</duration>
-<voice>1</voice>
-<type>half</type>
-</note>
-<note>
-<chord />
-<pitch>
-<step>E</step>
-<alter>-2</alter>
-<octave>3</octave>
-</pitch>
-<duration>2</duration>
-<voice>1</voice>
-<type>half</type>
-</note>
-</measure>
-<measure number="9" width="320">
-<note>
-<pitch>
-<step>E</step>
-<alter>-1</alter>
-<octave>3</octave>
-</pitch>
-<duration>2</duration>
-<voice>1</voice>
-<type>half</type>
-</note>
-<note>
-<chord />
-<pitch>
-<step>A</step>
-<octave>3</octave>
-</pitch>
-<duration>2</duration>
-<voice>1</voice>
-<type>half</type>
-</note>
-<note>
-<chord />
-<pitch>
-<step>C</step>
-<octave>3</octave>
-</pitch>
-<duration>2</duration>
-<voice>1</voice>
-<type>half</type>
-</note>
-<note>
-<chord />
-<pitch>
-<step>G</step>
 <octave>3</octave>
 </pitch>
 <duration>2</duration>
@@ -455,6 +453,28 @@
 <measure number="10" width="320">
 <note>
 <pitch>
+<step>C</step>
+<alter>-1</alter>
+<octave>3</octave>
+</pitch>
+<duration>2</duration>
+<voice>1</voice>
+<type>half</type>
+</note>
+<note>
+<chord />
+<pitch>
+<step>G</step>
+<alter>-1</alter>
+<octave>3</octave>
+</pitch>
+<duration>2</duration>
+<voice>1</voice>
+<type>half</type>
+</note>
+<note>
+<chord />
+<pitch>
 <step>E</step>
 <alter>-1</alter>
 <octave>3</octave>
@@ -466,28 +486,7 @@
 <note>
 <chord />
 <pitch>
-<step>A</step>
-<alter>-1</alter>
-<octave>2</octave>
-</pitch>
-<duration>2</duration>
-<voice>1</voice>
-<type>half</type>
-</note>
-<note>
-<chord />
-<pitch>
-<step>C</step>
-<octave>3</octave>
-</pitch>
-<duration>2</duration>
-<voice>1</voice>
-<type>half</type>
-</note>
-<note>
-<chord />
-<pitch>
-<step>G</step>
+<step>B</step>
 <alter>-1</alter>
 <octave>3</octave>
 </pitch>
@@ -499,40 +498,40 @@
 <measure number="11" width="320">
 <note>
 <pitch>
+<step>G</step>
+<octave>3</octave>
+</pitch>
+<duration>2</duration>
+<voice>1</voice>
+<type>half</type>
+</note>
+<note>
+<chord />
+<pitch>
+<step>B</step>
+<alter>-1</alter>
+<octave>2</octave>
+</pitch>
+<duration>2</duration>
+<voice>1</voice>
+<type>half</type>
+</note>
+<note>
+<chord />
+<pitch>
+<step>E</step>
+<alter>-1</alter>
+<octave>3</octave>
+</pitch>
+<duration>2</duration>
+<voice>1</voice>
+<type>half</type>
+</note>
+<note>
+<chord />
+<pitch>
 <step>C</step>
 <octave>4</octave>
-</pitch>
-<duration>2</duration>
-<voice>1</voice>
-<type>half</type>
-</note>
-<note>
-<chord />
-<pitch>
-<step>D</step>
-<alter>-1</alter>
-<octave>3</octave>
-</pitch>
-<duration>2</duration>
-<voice>1</voice>
-<type>half</type>
-</note>
-<note>
-<chord />
-<pitch>
-<step>A</step>
-<alter>-1</alter>
-<octave>3</octave>
-</pitch>
-<duration>2</duration>
-<voice>1</voice>
-<type>half</type>
-</note>
-<note>
-<chord />
-<pitch>
-<step>F</step>
-<octave>3</octave>
 </pitch>
 <duration>2</duration>
 <voice>1</voice>
@@ -542,149 +541,7 @@
 <measure number="12" width="320">
 <note>
 <pitch>
-<step>E</step>
-<octave>3</octave>
-</pitch>
-<duration>2</duration>
-<voice>1</voice>
-<type>half</type>
-</note>
-<note>
-<chord />
-<pitch>
-<step>B</step>
-<alter>-1</alter>
-<octave>3</octave>
-</pitch>
-<duration>2</duration>
-<voice>1</voice>
-<type>half</type>
-</note>
-<note>
-<chord />
-<pitch>
-<step>C</step>
-<octave>4</octave>
-</pitch>
-<duration>2</duration>
-<voice>1</voice>
-<type>half</type>
-</note>
-<note>
-<chord />
-<pitch>
 <step>G</step>
-<octave>3</octave>
-</pitch>
-<duration>2</duration>
-<voice>1</voice>
-<type>half</type>
-</note>
-</measure>
-<measure number="13" width="320">
-<note>
-<pitch>
-<step>B</step>
-<alter>-1</alter>
-<octave>2</octave>
-</pitch>
-<duration>2</duration>
-<voice>1</voice>
-<type>half</type>
-</note>
-<note>
-<chord />
-<pitch>
-<step>D</step>
-<alter>-1</alter>
-<octave>3</octave>
-</pitch>
-<duration>2</duration>
-<voice>1</voice>
-<type>half</type>
-</note>
-<note>
-<chord />
-<pitch>
-<step>F</step>
-<alter>-1</alter>
-<octave>3</octave>
-</pitch>
-<duration>2</duration>
-<voice>1</voice>
-<type>half</type>
-</note>
-<note>
-<chord />
-<pitch>
-<step>G</step>
-<alter>-1</alter>
-<octave>3</octave>
-</pitch>
-<duration>2</duration>
-<voice>1</voice>
-<type>half</type>
-</note>
-</measure>
-<measure number="14" width="320">
-<note>
-<pitch>
-<step>C</step>
-<octave>3</octave>
-</pitch>
-<duration>2</duration>
-<voice>1</voice>
-<type>half</type>
-</note>
-<note>
-<chord />
-<pitch>
-<step>E</step>
-<alter>-1</alter>
-<octave>3</octave>
-</pitch>
-<duration>2</duration>
-<voice>1</voice>
-<type>half</type>
-</note>
-<note>
-<chord />
-<pitch>
-<step>A</step>
-<alter>-1</alter>
-<octave>3</octave>
-</pitch>
-<duration>2</duration>
-<voice>1</voice>
-<type>half</type>
-</note>
-<note>
-<chord />
-<pitch>
-<step>F</step>
-<octave>3</octave>
-</pitch>
-<duration>2</duration>
-<voice>1</voice>
-<type>half</type>
-</note>
-</measure>
-<measure number="15" width="320">
-<note>
-<pitch>
-<step>B</step>
-<alter>-1</alter>
-<octave>3</octave>
-</pitch>
-<duration>2</duration>
-<voice>1</voice>
-<type>half</type>
-</note>
-<note>
-<chord />
-<pitch>
-<step>A</step>
-<alter>-1</alter>
 <octave>3</octave>
 </pitch>
 <duration>2</duration>
@@ -705,61 +562,7 @@
 <chord />
 <pitch>
 <step>D</step>
-<octave>3</octave>
-</pitch>
-<duration>2</duration>
-<voice>1</voice>
-<type>half</type>
-</note>
-</measure>
-<measure number="16" width="320">
-<note>
-<pitch>
-<step>E</step>
-<alter>-1</alter>
-<octave>3</octave>
-</pitch>
-<duration>2</duration>
-<voice>1</voice>
-<type>half</type>
-</note>
-<note>
-<chord />
-<pitch>
-<step>A</step>
-<octave>3</octave>
-</pitch>
-<duration>2</duration>
-<voice>1</voice>
-<type>half</type>
-</note>
-<note>
-<chord />
-<pitch>
-<step>C</step>
-<octave>3</octave>
-</pitch>
-<duration>2</duration>
-<voice>1</voice>
-<type>half</type>
-</note>
-<note>
-<chord />
-<pitch>
-<step>G</step>
-<octave>3</octave>
-</pitch>
-<duration>2</duration>
-<voice>1</voice>
-<type>half</type>
-</note>
-</measure>
-<measure number="17" width="320">
-<note>
-<pitch>
-<step>D</step>
-<alter>-1</alter>
-<octave>3</octave>
+<octave>4</octave>
 </pitch>
 <duration>2</duration>
 <voice>1</voice>
@@ -770,671 +573,6 @@
 <pitch>
 <step>B</step>
 <alter>-1</alter>
-<octave>3</octave>
-</pitch>
-<duration>2</duration>
-<voice>1</voice>
-<type>half</type>
-</note>
-<note>
-<chord />
-<pitch>
-<step>E</step>
-<alter>-1</alter>
-<octave>3</octave>
-</pitch>
-<duration>2</duration>
-<voice>1</voice>
-<type>half</type>
-</note>
-<note>
-<chord />
-<pitch>
-<step>G</step>
-<octave>3</octave>
-</pitch>
-<duration>2</duration>
-<voice>1</voice>
-<type>half</type>
-</note>
-</measure>
-<measure number="18" width="320">
-<note>
-<pitch>
-<step>A</step>
-<octave>3</octave>
-</pitch>
-<duration>2</duration>
-<voice>1</voice>
-<type>half</type>
-</note>
-<note>
-<chord />
-<pitch>
-<step>C</step>
-<octave>4</octave>
-</pitch>
-<duration>2</duration>
-<voice>1</voice>
-<type>half</type>
-</note>
-<note>
-<chord />
-<pitch>
-<step>F</step>
-<alter>1</alter>
-<octave>3</octave>
-</pitch>
-<duration>2</duration>
-<voice>1</voice>
-<type>half</type>
-</note>
-<note>
-<chord />
-<pitch>
-<step>D</step>
-<octave>4</octave>
-</pitch>
-<duration>2</duration>
-<voice>1</voice>
-<type>half</type>
-</note>
-</measure>
-<measure number="19" width="320">
-<note>
-<pitch>
-<step>E</step>
-<alter>-1</alter>
-<octave>3</octave>
-</pitch>
-<duration>2</duration>
-<voice>1</voice>
-<type>half</type>
-</note>
-<note>
-<chord />
-<pitch>
-<step>A</step>
-<alter>-1</alter>
-<octave>3</octave>
-</pitch>
-<duration>2</duration>
-<voice>1</voice>
-<type>half</type>
-</note>
-<note>
-<chord />
-<pitch>
-<step>C</step>
-<octave>4</octave>
-</pitch>
-<duration>2</duration>
-<voice>1</voice>
-<type>half</type>
-</note>
-<note>
-<chord />
-<pitch>
-<step>G</step>
-<alter>-1</alter>
-<octave>3</octave>
-</pitch>
-<duration>2</duration>
-<voice>1</voice>
-<type>half</type>
-</note>
-</measure>
-<measure number="20" width="320">
-<note>
-<pitch>
-<step>D</step>
-<octave>4</octave>
-</pitch>
-<duration>2</duration>
-<voice>1</voice>
-<type>half</type>
-</note>
-<note>
-<chord />
-<pitch>
-<step>F</step>
-<octave>3</octave>
-</pitch>
-<duration>2</duration>
-<voice>1</voice>
-<type>half</type>
-</note>
-<note>
-<chord />
-<pitch>
-<step>B</step>
-<octave>3</octave>
-</pitch>
-<duration>2</duration>
-<voice>1</voice>
-<type>half</type>
-</note>
-<note>
-<chord />
-<pitch>
-<step>G</step>
-<octave>3</octave>
-</pitch>
-<duration>2</duration>
-<voice>1</voice>
-<type>half</type>
-</note>
-</measure>
-<measure number="21" width="320">
-<note>
-<pitch>
-<step>E</step>
-<octave>3</octave>
-</pitch>
-<duration>2</duration>
-<voice>1</voice>
-<type>half</type>
-</note>
-<note>
-<chord />
-<pitch>
-<step>B</step>
-<alter>-1</alter>
-<octave>2</octave>
-</pitch>
-<duration>2</duration>
-<voice>1</voice>
-<type>half</type>
-</note>
-<note>
-<chord />
-<pitch>
-<step>C</step>
-<octave>4</octave>
-</pitch>
-<duration>2</duration>
-<voice>1</voice>
-<type>half</type>
-</note>
-<note>
-<chord />
-<pitch>
-<step>G</step>
-<octave>3</octave>
-</pitch>
-<duration>2</duration>
-<voice>1</voice>
-<type>half</type>
-</note>
-</measure>
-<measure number="22" width="320">
-<note>
-<pitch>
-<step>B</step>
-<alter>-1</alter>
-<octave>2</octave>
-</pitch>
-<duration>2</duration>
-<voice>1</voice>
-<type>half</type>
-</note>
-<note>
-<chord />
-<pitch>
-<step>D</step>
-<alter>-1</alter>
-<octave>4</octave>
-</pitch>
-<duration>2</duration>
-<voice>1</voice>
-<type>half</type>
-</note>
-<note>
-<chord />
-<pitch>
-<step>F</step>
-<alter>-1</alter>
-<octave>3</octave>
-</pitch>
-<duration>2</duration>
-<voice>1</voice>
-<type>half</type>
-</note>
-<note>
-<chord />
-<pitch>
-<step>G</step>
-<alter>-1</alter>
-<octave>3</octave>
-</pitch>
-<duration>2</duration>
-<voice>1</voice>
-<type>half</type>
-</note>
-</measure>
-<measure number="23" width="320">
-<note>
-<pitch>
-<step>C</step>
-<octave>3</octave>
-</pitch>
-<duration>2</duration>
-<voice>1</voice>
-<type>half</type>
-</note>
-<note>
-<chord />
-<pitch>
-<step>E</step>
-<alter>-1</alter>
-<octave>3</octave>
-</pitch>
-<duration>2</duration>
-<voice>1</voice>
-<type>half</type>
-</note>
-<note>
-<chord />
-<pitch>
-<step>A</step>
-<octave>3</octave>
-</pitch>
-<duration>2</duration>
-<voice>1</voice>
-<type>half</type>
-</note>
-<note>
-<chord />
-<pitch>
-<step>F</step>
-<octave>3</octave>
-</pitch>
-<duration>2</duration>
-<voice>1</voice>
-<type>half</type>
-</note>
-</measure>
-<measure number="24" width="320">
-<note>
-<pitch>
-<step>E</step>
-<octave>3</octave>
-</pitch>
-<duration>2</duration>
-<voice>1</voice>
-<type>half</type>
-</note>
-<note>
-<chord />
-<pitch>
-<step>B</step>
-<octave>3</octave>
-</pitch>
-<duration>2</duration>
-<voice>1</voice>
-<type>half</type>
-</note>
-<note>
-<chord />
-<pitch>
-<step>G</step>
-<alter>1</alter>
-<octave>3</octave>
-</pitch>
-<duration>2</duration>
-<voice>1</voice>
-<type>half</type>
-</note>
-<note>
-<chord />
-<pitch>
-<step>D</step>
-<octave>4</octave>
-</pitch>
-<duration>2</duration>
-<voice>1</voice>
-<type>half</type>
-</note>
-</measure>
-<measure number="25" width="320">
-<note>
-<pitch>
-<step>B</step>
-<alter>-1</alter>
-<octave>2</octave>
-</pitch>
-<duration>2</duration>
-<voice>1</voice>
-<type>half</type>
-</note>
-<note>
-<chord />
-<pitch>
-<step>E</step>
-<alter>-1</alter>
-<octave>3</octave>
-</pitch>
-<duration>2</duration>
-<voice>1</voice>
-<type>half</type>
-</note>
-<note>
-<chord />
-<pitch>
-<step>D</step>
-<octave>4</octave>
-</pitch>
-<duration>2</duration>
-<voice>1</voice>
-<type>half</type>
-</note>
-<note>
-<chord />
-<pitch>
-<step>G</step>
-<octave>3</octave>
-</pitch>
-<duration>2</duration>
-<voice>1</voice>
-<type>half</type>
-</note>
-</measure>
-<measure number="26" width="320">
-<note>
-<pitch>
-<step>E</step>
-<alter>-1</alter>
-<octave>3</octave>
-</pitch>
-<duration>2</duration>
-<voice>1</voice>
-<type>half</type>
-</note>
-<note>
-<chord />
-<pitch>
-<step>A</step>
-<octave>3</octave>
-</pitch>
-<duration>2</duration>
-<voice>1</voice>
-<type>half</type>
-</note>
-<note>
-<chord />
-<pitch>
-<step>C</step>
-<octave>3</octave>
-</pitch>
-<duration>2</duration>
-<voice>1</voice>
-<type>half</type>
-</note>
-<note>
-<chord />
-<pitch>
-<step>G</step>
-<octave>3</octave>
-</pitch>
-<duration>2</duration>
-<voice>1</voice>
-<type>half</type>
-</note>
-</measure>
-<measure number="27" width="320">
-<note>
-<pitch>
-<step>E</step>
-<alter>-1</alter>
-<octave>3</octave>
-</pitch>
-<duration>2</duration>
-<voice>1</voice>
-<type>half</type>
-</note>
-<note>
-<chord />
-<pitch>
-<step>A</step>
-<alter>-1</alter>
-<octave>3</octave>
-</pitch>
-<duration>2</duration>
-<voice>1</voice>
-<type>half</type>
-</note>
-<note>
-<chord />
-<pitch>
-<step>C</step>
-<octave>3</octave>
-</pitch>
-<duration>2</duration>
-<voice>1</voice>
-<type>half</type>
-</note>
-<note>
-<chord />
-<pitch>
-<step>G</step>
-<alter>-1</alter>
-<octave>3</octave>
-</pitch>
-<duration>2</duration>
-<voice>1</voice>
-<type>half</type>
-</note>
-</measure>
-<measure number="28" width="320">
-<note>
-<pitch>
-<step>B</step>
-<alter>-1</alter>
-<octave>2</octave>
-</pitch>
-<duration>2</duration>
-<voice>1</voice>
-<type>half</type>
-</note>
-<note>
-<chord />
-<pitch>
-<step>D</step>
-<octave>4</octave>
-</pitch>
-<duration>2</duration>
-<voice>1</voice>
-<type>half</type>
-</note>
-<note>
-<chord />
-<pitch>
-<step>F</step>
-<octave>3</octave>
-</pitch>
-<duration>2</duration>
-<voice>1</voice>
-<type>half</type>
-</note>
-<note>
-<chord />
-<pitch>
-<step>G</step>
-<octave>3</octave>
-</pitch>
-<duration>2</duration>
-<voice>1</voice>
-<type>half</type>
-</note>
-</measure>
-<measure number="29" width="320">
-<note>
-<pitch>
-<step>B</step>
-<alter>-1</alter>
-<octave>2</octave>
-</pitch>
-<duration>2</duration>
-<voice>1</voice>
-<type>half</type>
-</note>
-<note>
-<chord />
-<pitch>
-<step>D</step>
-<alter>-1</alter>
-<octave>3</octave>
-</pitch>
-<duration>2</duration>
-<voice>1</voice>
-<type>half</type>
-</note>
-<note>
-<chord />
-<pitch>
-<step>F</step>
-<alter>-1</alter>
-<octave>3</octave>
-</pitch>
-<duration>2</duration>
-<voice>1</voice>
-<type>half</type>
-</note>
-<note>
-<chord />
-<pitch>
-<step>G</step>
-<alter>-1</alter>
-<octave>3</octave>
-</pitch>
-<duration>2</duration>
-<voice>1</voice>
-<type>half</type>
-</note>
-</measure>
-<measure number="30" width="320">
-<note>
-<pitch>
-<step>C</step>
-<octave>4</octave>
-</pitch>
-<duration>2</duration>
-<voice>1</voice>
-<type>half</type>
-</note>
-<note>
-<chord />
-<pitch>
-<step>E</step>
-<alter>-1</alter>
-<octave>3</octave>
-</pitch>
-<duration>2</duration>
-<voice>1</voice>
-<type>half</type>
-</note>
-<note>
-<chord />
-<pitch>
-<step>A</step>
-<octave>3</octave>
-</pitch>
-<duration>2</duration>
-<voice>1</voice>
-<type>half</type>
-</note>
-<note>
-<chord />
-<pitch>
-<step>F</step>
-<octave>3</octave>
-</pitch>
-<duration>2</duration>
-<voice>1</voice>
-<type>half</type>
-</note>
-</measure>
-<measure number="31" width="320">
-<note>
-<pitch>
-<step>C</step>
-<alter>-1</alter>
-<octave>4</octave>
-</pitch>
-<duration>2</duration>
-<voice>1</voice>
-<type>half</type>
-</note>
-<note>
-<chord />
-<pitch>
-<step>E</step>
-<alter>-1</alter>
-<octave>3</octave>
-</pitch>
-<duration>2</duration>
-<voice>1</voice>
-<type>half</type>
-</note>
-<note>
-<chord />
-<pitch>
-<step>F</step>
-<alter>-1</alter>
-<octave>3</octave>
-</pitch>
-<duration>2</duration>
-<voice>1</voice>
-<type>half</type>
-</note>
-<note>
-<chord />
-<pitch>
-<step>A</step>
-<alter>-1</alter>
-<octave>2</octave>
-</pitch>
-<duration>2</duration>
-<voice>1</voice>
-<type>half</type>
-</note>
-</measure>
-<measure number="32" width="320">
-<note>
-<pitch>
-<step>B</step>
-<alter>-1</alter>
-<octave>2</octave>
-</pitch>
-<duration>2</duration>
-<voice>1</voice>
-<type>half</type>
-</note>
-<note>
-<chord />
-<pitch>
-<step>A</step>
-<alter>-1</alter>
-<octave>3</octave>
-</pitch>
-<duration>2</duration>
-<voice>1</voice>
-<type>half</type>
-</note>
-<note>
-<chord />
-<pitch>
-<step>F</step>
-<octave>3</octave>
-</pitch>
-<duration>2</duration>
-<voice>1</voice>
-<type>half</type>
-</note>
-<note>
-<chord />
-<pitch>
-<step>D</step>
 <octave>3</octave>
 </pitch>
 <duration>2</duration>

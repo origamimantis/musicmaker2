@@ -21,12 +21,12 @@ class Progression:
         self.length = len(the_progression)
         lenth = len(str(self.length))
         self.first = Chord(the_progression[0])
-        print(f'Chords processed: %{lenth}s / {self.length}' % 1 , end = '\r')
+        print(f'Chords processed: %{lenth}s / {self.length}    ' % 1 , end = '\r')
         tmp = self.first
         for chdnum in range(1, self.length):
             tmp.next = Chord(the_progression[chdnum])
             tmp = tmp.next
-            print(f'Processed chord %{lenth}s / {self.length}' % (chdnum+1) , end = '\r')
+            print(f'Processed chord %{lenth}s / {self.length}    ' % (chdnum+1) , end = '\r')
             
 
 class Chord:
