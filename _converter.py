@@ -15,6 +15,15 @@ OCTAVES = {"A" : (2,3),
 
 ALTER = { "b" : '-1', "#" : '1' , "%" : '-2' , "x" : '2'}
 
+NOTELEN = { '6' : ('whole', True),
+            '4' : ('whole', False ),
+            '3' : ('half' , True),
+            '2' : ('half' , False),
+            '1.5' : ('quarter', True),
+            '1' : ('quarter', False),
+            '0.5':('eighth', False)}
+
+
 
 class Progression:
     def __init__(self, the_progression : [frozenset]):
@@ -32,7 +41,8 @@ class Progression:
 class Chord:
     def __init__(self, chd: frozenset):
         self.next = None
-        self.notes = set(chd)
+        self.notes = set(chd[0])
+        self.time = chd[1]
 
 
 class FileContents:
@@ -226,7 +236,9 @@ class FileContents:
 
     def _add_notes(self, chd, up):
         objchd = False
-        
+        timelen = str(chd.time)
+        strtime, isdotted = NOTELEN[str(chd.time)]
+
         for note in chd.notes:
             tmp3 = et.SubElement(up, 'note')
             if objchd:
@@ -244,9 +256,11 @@ class FileContents:
             
             et.SubElement(tmp4, 'octave').text = str(randint(*OCTAVES[note[0]]))
             
-            et.SubElement(tmp3, 'duration').text = '2'
+            et.SubElement(tmp3, 'duration').text = str(chd.time)
             et.SubElement(tmp3, 'voice').text = '1'
-            et.SubElement(tmp3, 'type').text = 'half'
+            et.SubElement(tmp3, 'type').text = strtime
+            if isdotted:
+                et.SubElement(tmp3, 'dot')
                 
                 
 
