@@ -45,27 +45,42 @@ CHORDS = {'maj7' :  ( (0, 4, 7, 11) , (0, 2, 4, 6) ) ,
           ''     :  ( (0, 4, 7)     , (0, 2, 4)    ) ,
           'm'    :  ( (0, 3, 7)     , (0, 2, 4)    ) }
 
+CHORD = re.compile(r'([A-G])([b|#|%x]?)(.*)')
 
 class ChordsTranslateError(Exception):
     pass
 
-def _translated(chord):
-    if chord[0] not in 'ABCDEFG':
-        raise ChordsTranslateError
+def _translated(chord, ln, cn, fn):
     
-    base = NOTE_IDX[chord[0]]
-    bsidx = NOTE_ORD.index(chord[0])
-    chdt = chord[1:]
-    try:
-        if chord[1] in 'b#%x':
-            base += ACCID[chord[1]]
-            chdt = chord[2:]
+    
+    
+    #if chord[0] not in 'ABCDEFG':
+    #    raise ChordsTranslateError
+    # 
+    #base = NOTE_IDX[chord[0]]
+    #bsidx = NOTE_ORD.index(chord[0])
+    #chdt = chord[1:]
+    #try:
+    #    if chord[1] in 'b#%x':
+    #        base += ACCID[chord[1]]
+    #        chdt = chord[2:]
     # means it's a major chord w/o accidental, like G or A
-    except IndexError:
-        chdt = ''
+    #except IndexError:
+    #    chdt = ''
         
+    #ind, rel = CHORDS[chdt]
+    match = CHORD.match(chord)
+    if match is None:
+        raise ChordsTranslateError(f"Invalid note ({chord}) at chord {cn}, line {ln} in file '{fn}'.")
 
-    ind, rel = CHORDS[chdt]
+    base = NOTE_IDX[match.group(1)] + ACCID[match.group(2)]
+    bsidx = NOTE_ORD.index(match.group(1))
+    chdt = match.group(3)
+
+    try:
+        ind, rel = CHORDS[chdt]
+    except KeyError:
+        raise ChordsTranslateError(f"Invalid chord type ({chdt}) at chord {cn}, line {ln} in file '{fn}'.")
 
     notelist = []
 
@@ -82,35 +97,52 @@ def _translated(chord):
 
 
 
-def _parse(line):
+def _parse(line, linenum, fname):
     the_list = re.split(r'(?:\s*,?\s+|\s*,\s*)', line)
 
     parsed_line = ''
-    
+    chordnum = 0
     for chord in the_list:
         if chord != '':
-            parsed_line += _translated(chord)
+            chordnum += 1
+            parsed_line += _translated(chord, linenum, chordnum, fname)
     return parsed_line
 
 
 def read( directory = 'to_convert' ):
     for filename in Path(directory).iterdir():
         
-        altpath = Path('files') / Path(filename.name)
+        fname = filename.name
+        altpath = Path('files') / Path(fname)
+        
         if altpath in Path('files').iterdir() and not input_yn(f'Overwrite {filename.name}?', 'No'):
-            print(f'Skipped file {filename.name}; continuing to next file, if it exists.')
+            print(f"Skipped file '{filename.name}'; continuing to next file, if it exists.\n")
             continue
+        
         with open(filename, 'r') as old_f, open(altpath, 'w') as new_f:
+       
+            print(f"Processing file '{filename.name}'...", end = '\r')
+            linenum = 0
+            failed = False
+            
             for line in old_f:
                 try:
-                    new_f.write(_parse(line.strip()))
-                except StopIteration: #(KeyError, ChordsTranslateError):
-                    print(f'Error parsing {filename.name}. Attempting next file, if it exists.')
+                    linenum += 1
+                    new_f.write(_parse(line.strip(), linenum, fname))
+                except ChordsTranslateError as chdexcpt:
+                    failed = True
+                    print('\n' + str(chdexcpt))
+                    altpath.unlink()
                     break
+            
+            if not failed: print(f"Processing file '{filename.name}'... Finished.\n")
+            else:          print(f"Error processing file '{filename.name}'.\n")
 
 
 
 if __name__ == '__main__':
+
+    print("Reading files from 'to_convert/ ...\n")
 
     read()
 
