@@ -236,50 +236,37 @@ class FileContents:
 
     def _add_notes(self, chd, up):
         objchd = False
-        timelen = str(chd.time)
-        strtime, isdotted = NOTELEN[str(chd.time)]
+        strtime, isdotted = NOTELEN[chd.time]
 
         for note in chd.notes:
             tmp3 = et.SubElement(up, 'note')
             if objchd:
                 h = et.SubElement(tmp3, 'chord')
-         
                 
             objchd = True
             
-            tmp4 = et.SubElement(tmp3, 'pitch')
+            if chd.notes != {'REST'}:
+                tmp4 = et.SubElement(tmp3, 'pitch')
           
-            et.SubElement(tmp4, 'step').text = note[0]
+                et.SubElement(tmp4, 'step').text = note[0]
            
-            if len(note) == 2:
-                et.SubElement(tmp4, 'alter').text = ALTER[note[1]]
+                if len(note) == 2:
+                    et.SubElement(tmp4, 'alter').text = ALTER[note[1]]
             
-            et.SubElement(tmp4, 'octave').text = str(randint(*OCTAVES[note[0]]))
-            
-            et.SubElement(tmp3, 'duration').text = str(chd.time)
+                et.SubElement(tmp4, 'octave').text = str(randint(*OCTAVES[note[0]]))
+            else:
+                et.SubElement(tmp3, 'rest')
+
+            et.SubElement(tmp3, 'duration').text = chd.time
             et.SubElement(tmp3, 'voice').text = '1'
             et.SubElement(tmp3, 'type').text = strtime
             if isdotted:
                 et.SubElement(tmp3, 'dot')
                 
-                
-
-
-
 
     def the_xml(self):
-        print('Converting chords to text...\n')
-        xml_list = et.tostring(self.body).decode().split('><')
         print('Writing to out.txt...\n')
-        yield len(xml_list) + 2
-        yield '<?xml version="1.0" encoding="UTF-8"?>'
-        yield '<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 3.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">'
-        for line in xml_list:
-            if not line.startswith('<'):
-                line = '<' + line
-            if not line.endswith('>'):
-                line += '>'
-            yield line
+        return '<?xml version="1.0" encoding="UTF-8"?>\n<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 3.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">\n' + et.tostring(self.body).decode().replace('><', '>\n<')
 
 
 

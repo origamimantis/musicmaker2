@@ -11,7 +11,7 @@ from random  import choice as randchoice
 def parse_file(pattern_dict: defaultdict , weight : int, the_file, fname , ptype , songchords:defaultdict = None ):
     '''Reads a given file and generates a dictionary mapping partial progressions to possible chords.'''
     
-    gen = (_chord_gen if ptype == 'files' else _rhy_gen)(the_file)
+    gen = _chord_gen(the_file)
    
     # Will raise RuntimeError (StopIteration) if weight > #chords in file.
     current_phrase = deque((next(gen) for x in range(weight)) , maxlen = weight)
@@ -26,20 +26,21 @@ def parse_file(pattern_dict: defaultdict , weight : int, the_file, fname , ptype
         current_phrase.append(chord)
     songchords[fname].add(tuple(current_phrase))
 
+def parse_rhy(rtmlist, the_file):
+    ''' Read lines of a file and extract common rhythms'''
+
+    for line in the_file:
+        if not line.isspace():
+            k = line.split()
+            rtmlist.append(tuple(k))
+
+
 def _chord_gen(the_file : open):
     '''Generator that yields each chord in a file.'''
 
     for line in the_file:
         for item in line.split(','):
             yield frozenset(item.strip()[1:-1].split(';'))
-
-def _rhy_gen(the_file : open):
-    '''Generator that yields each chord in a file.'''
-
-    for line in the_file:
-        for item in line.split():
-            yield item
-
 
 
 def update_dict(pattern_dict, weight, songchords,directory = "files"):
@@ -56,23 +57,15 @@ def update_dict(pattern_dict, weight, songchords,directory = "files"):
                     print(f'{progfile.name} was not parsed because it has less chords in it than the specified weight.')
     if failed: print()
 
-def update_rdict(rhythm_dict , songrtms, directory = 'rhythms'):
-    
-    WEIGHT = 4
 
-    failed = False
-    for progfile in Path(directory).iterdir():
-
-        if progfile.is_file():
-            with open(progfile, 'r') as the_file:
+def update_rlist(rtmlist, directory = 'rhythms'):
+    for rhyfile in Path(directory).iterdir():
+        if rhyfile.is_file():
+            with open(rhyfile) as the_file:
                 try:
-                    parse_file( rhythm_dict, WEIGHT, the_file, progfile.name, directory, songrtms)
-                except RuntimeError:
-                    failed = True
-                    print(f'{progfile.name} was not parsed because it has less chords in it than the specified weight.')
-    if failed: print()
-
-
+                    parse_rhy(rtmlist, the_file)
+                except AssertionError:
+                    pass
 
 
 def generate_prgsn(pattern_dict, song_chd_dict, weight: int, total_len: int , curl: bool = False) -> [str]:
@@ -101,29 +94,14 @@ def generate_prgsn(pattern_dict, song_chd_dict, weight: int, total_len: int , cu
     return prgsn[:total_len]
 
 
-def generate_rhythm(rhythm_dict, song_rtm_dict, total_len: int , curl: bool = False) -> [str]:
+def generate_rhythm(rhythmslist, total_len: int , curl: bool = False) -> [str]:
     '''Generates and returns list of chord progressions; option to continue if next chord isn't found.'''
-   
-    weight = 4
-    rtms = list(randchoice(tuple(rhythm_dict.keys())))
-    failed = False 
+  
+    rtms = []
 
     while len(rtms) < total_len:
-        try:
-            k =  randchoice(tuple(rhythm_dict[  tuple(rtms[-weight:])  ]  ))
-            rtms.append(k)
-        
-        # IndexError because at this point pattern_dict is a dict and not a dict, and 
-        except KeyError:
-            failed = True
-            print(f'Unable to find next beat at beat {len(rtms)}, choosing new seed.')
-            if curl:
-                h =  randchoice( tuple(song_rtm_dict))
-                rtms.extend(randchoice(tuple(song_rtm_dict[ h ])))
-                print(h)
-                
-            else: break
-    if failed: print()
+        k =  randchoice(rhythmslist)
+        rtms.extend(k)
 
     return rtms[:total_len]
 
