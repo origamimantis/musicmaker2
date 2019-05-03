@@ -42,49 +42,29 @@ CHORDS = {'maj7' :  ( (0, 4, 7, 11) , (0, 2, 4, 6) ) ,
           '7'    :  ( (0, 4, 7, 10) , (0, 2, 4, 6) ) ,
           '-7'   :  ( (0, 3, 7, 10) , (0, 2, 4, 6) ) ,
           '-7b5' :  ( (0, 3, 6, 10) , (0, 2, 4, 6) ) ,
-          ''     :  ( (0, 4, 7)     , (0, 2, 4)    ) ,
+          ''  :  ( (0, 4, 7)     , (0, 2, 4)    ) ,
           'm'    :  ( (0, 3, 7)     , (0, 2, 4)    ) ,
           'm9'   :  ( (0, 3, 7, 10, 14) , (0, 2, 4, 6, 8) ) }
 
-CHORD = re.compile(r'([A-G])([b|#|%x]?)(.*)')
+allowed_chords = '|'.join(('(?:' + ch + ')') for ch in CHORDS if ch != '')
+
+CHORD = re.compile(r'^([A-G])([b|#|%x]?)(' + allowed_chords + r'|(?:\b))$')
 
 class ChordsTranslateError(Exception):
     pass
 
 def _translated(chord, ln, cn, fn):
     
-    
-    
-    #if chord[0] not in 'ABCDEFG':
-    #    raise ChordsTranslateError
-    # 
-    #base = NOTE_IDX[chord[0]]
-    #bsidx = NOTE_ORD.index(chord[0])
-    #chdt = chord[1:]
-    #try:
-    #    if chord[1] in 'b#%x':
-    #        base += ACCID[chord[1]]
-    #        chdt = chord[2:]
-    # means it's a major chord w/o accidental, like G or A
-    #except IndexError:
-    #    chdt = ''
-        
-    #ind, rel = CHORDS[chdt]
     match = CHORD.match(chord)
     if match is None:
-        raise ChordsTranslateError(f"Invalid note ({chord}) at chord {cn}, line {ln} in file '{fn}'.")
+        raise ChordsTranslateError(f"Invalid chord ({chord}) at position {cn}, line {ln} in file '{fn}'.")
 
     base = NOTE_IDX[match.group(1)] + ACCID[match.group(2)]
     bsidx = NOTE_ORD.index(match.group(1))
     chdt = match.group(3)
 
-    try:
-        ind, rel = CHORDS[chdt]
-    except KeyError:
-        raise ChordsTranslateError(f"Invalid chord type ({chdt}) at chord {cn}, line {ln} in file '{fn}'.")
-
     notelist = []
-
+    ind, rel = CHORDS[chdt]
     for x in range(len(ind)):
         
         visnote = NOTE_ORD[(bsidx + rel[x] )%7]
