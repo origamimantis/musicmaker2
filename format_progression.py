@@ -22,7 +22,7 @@ ACCID = {'' :  0,
          'x':  2}
 
 # ACCIDW uses -1 === 11 mod 12 and -2 === 10 mod 12.
-
+# % : double flat, x : double sharp
 ACCIDW = { 0:'',
 
           11:'b',
@@ -37,18 +37,27 @@ ACCIDW = { 0:'',
 
 
 # CHORDS dict maps type to (index relative to first note , note relative to first note)
+#CHORDS = {'maj7' :  ( (0, 4, 7, 11) , (0, 2, 4, 6) ) ,
+#          '7'    :  ( (0, 4, 7, 10) , (0, 2, 4, 6) ) ,
+#          '-7'   :  ( (0, 3, 7, 10) , (0, 2, 4, 6) ) ,
+#          '-7b5' :  ( (0, 3, 6, 10) , (0, 2, 4, 6) ) ,
+#          ''     :  ( (0, 4, 7)     , (0, 2, 4)    ) ,
+#          'm'    :  ( (0, 3, 7)     , (0, 2, 4)    ) ,
+#          'm9'   :  ( (0, 3, 7, 10, 14) , (0, 2, 4, 6, 8) ) }
+CHORDS = {}
 
-CHORDS = {'maj7' :  ( (0, 4, 7, 11) , (0, 2, 4, 6) ) ,
-          '7'    :  ( (0, 4, 7, 10) , (0, 2, 4, 6) ) ,
-          '-7'   :  ( (0, 3, 7, 10) , (0, 2, 4, 6) ) ,
-          '-7b5' :  ( (0, 3, 6, 10) , (0, 2, 4, 6) ) ,
-          ''  :  ( (0, 4, 7)     , (0, 2, 4)    ) ,
-          'm'    :  ( (0, 3, 7)     , (0, 2, 4)    ) ,
-          'm9'   :  ( (0, 3, 7, 10, 14) , (0, 2, 4, 6, 8) ) }
+with open('chords.txt' ) as chd_file:
+    for line in chd_file:
+        if line[0] == '#':
+            continue
+        chdn, left, right = line.rstrip().split(':')
+        CHORDS[chdn.strip()] = ( tuple(int(s1) for s1 in left.split()) , tuple(int(s2) for s2 in right.split()) )
 
-allowed_chords = '|'.join(('(?:' + ch + ')') for ch in CHORDS if ch != '')
 
-CHORD = re.compile(r'^([A-G])([b|#|%x]?)(' + allowed_chords + r'|(?:\b))$')
+allowed_chords = '|'.join(CHORDS)
+
+CHORD = re.compile(r'^([A-G])([b#%x]?)(' + allowed_chords + ')$')
+print(r'^([A-G])([b#%x]?)(' + allowed_chords + ')$')
 
 class ChordsTranslateError(Exception):
     pass
@@ -58,7 +67,7 @@ def _translated(chord, ln, cn, fn):
     match = CHORD.match(chord)
     if match is None:
         raise ChordsTranslateError(f"Invalid chord ({chord}) at position {cn}, line {ln} in file '{fn}'.")
-
+    print(match.groups())
     base = NOTE_IDX[match.group(1)] + ACCID[match.group(2)]
     bsidx = NOTE_ORD.index(match.group(1))
     chdt = match.group(3)
@@ -123,7 +132,7 @@ def read( directory = 'to_convert' ):
 
 if __name__ == '__main__':
 
-    print("Reading files from 'to_convert/ ...\n")
+    print("Reading files from to_convert/ ...\n")
 
     read()
 

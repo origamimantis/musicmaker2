@@ -1,7 +1,7 @@
 from collections import defaultdict
 from _reader     import update_dict, update_rlist, generate_prgsn, generate_rhythm
 from _inputter   import input_int, input_yn
-from _converter  import to_mxml, build_class, FileContents
+from _converter  import build_class, FileContents
 
 if __name__ == '__main__':
    

@@ -296,15 +296,3 @@ class FileContents:
 def build_class(the_p):
     prog = Progression(the_p)
     return prog
-def header():
-    return "--HEADER--"
-
-def to_mxml( the_p:[] ):
-    
-    DESTINATION = 'out.xml'
-    
-    with open(DESTINATION , 'w') as the_file:
-        the_file.write(header())
-        for chd in the_p:
-            for note in chd:
-                pass
