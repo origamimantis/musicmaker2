@@ -36,22 +36,22 @@ ACCIDW = { 0:'',
            2:'x'}
 
 
-# CHORDS dict maps type to (index relative to first note , note relative to first note)
-#CHORDS = {'maj7' :  ( (0, 4, 7, 11) , (0, 2, 4, 6) ) ,
-#          '7'    :  ( (0, 4, 7, 10) , (0, 2, 4, 6) ) ,
-#          '-7'   :  ( (0, 3, 7, 10) , (0, 2, 4, 6) ) ,
-#          '-7b5' :  ( (0, 3, 6, 10) , (0, 2, 4, 6) ) ,
-#          ''     :  ( (0, 4, 7)     , (0, 2, 4)    ) ,
-#          'm'    :  ( (0, 3, 7)     , (0, 2, 4)    ) ,
-#          'm9'   :  ( (0, 3, 7, 10, 14) , (0, 2, 4, 6, 8) ) }
+# CHORDS dict maps type to (index relative to first note , note relative to first note), (allowed notes, passing)
+#CHORDS = {'maj7' :  ( (0, 4, 7, 11)     , (0, 2, 4, 6)    ) , (something),
+#          '7'    :  ( (0, 4, 7, 10)     , (0, 2, 4, 6)    ) , (...),
+#          '-7'   :  ( (0, 3, 7, 10)     , (0, 2, 4, 6)    ) , (...),
+#          '-7b5' :  ( (0, 3, 6, 10)     , (0, 2, 4, 6)    ) , (...),
+#          ''     :  ( (0, 4, 7)         , (0, 2, 4)       ) , (...),
+#          'm'    :  ( (0, 3, 7)         , (0, 2, 4)       ) , (...),
+#          'm9'   :  ( (0, 3, 7, 10, 14) , (0, 2, 4, 6, 8) ) , (...)}
 CHORDS = {}
 
 with open('chords.txt' ) as chd_file:
     for line in chd_file:
         if line[0] == '#':
             continue
-        chdn, left, right = line.rstrip().split(':')
-        CHORDS[chdn.strip()] = ( tuple(int(s1) for s1 in left.split()) , tuple(int(s2) for s2 in right.split()) )
+        chdn, left, right, notes, passing = line.rstrip().split(':')
+        CHORDS[chdn.strip()] = tuple( tuple(int(s) for s in sect.split()) for sect in line.rstrip().split(':'))
 
 
 allowed_chords = '|'.join(CHORDS)
@@ -67,13 +67,12 @@ def _translated(chord, ln, cn, fn):
     match = CHORD.match(chord)
     if match is None:
         raise ChordsTranslateError(f"Invalid chord ({chord}) at position {cn}, line {ln} in file '{fn}'.")
-    print(match.groups())
     base = NOTE_IDX[match.group(1)] + ACCID[match.group(2)]
     bsidx = NOTE_ORD.index(match.group(1))
     chdt = match.group(3)
 
     notelist = []
-    ind, rel = CHORDS[chdt]
+    ind, rel = CHORDS[chdt][0]
     for x in range(len(ind)):
         
         visnote = NOTE_ORD[(bsidx + rel[x] )%7]
@@ -82,7 +81,7 @@ def _translated(chord, ln, cn, fn):
 
 
 
-    return '{' + ';'.join(notelist) + '}\n'
+    return '{' + ';'.join(notelist) + '}   '+ chord + '\n'
 
 
 

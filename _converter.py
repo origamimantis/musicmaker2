@@ -26,7 +26,7 @@ NOTELEN = { '6' : ('whole', True),
 
 
 class Progression:
-    def __init__(self, the_progression : [frozenset]):
+    def __init__(self, the_progression : [(frozenset, str)]):
         self.length = len(the_progression)
         lenth = len(str(self.length))
         self.first = Chord(the_progression[0])
@@ -41,8 +41,9 @@ class Progression:
 class Chord:
     def __init__(self, chd: frozenset):
         self.next = None
-        self.notes = set(chd[0])
-        self.time = chd[1]
+        self.name = chd[0]
+        self.notes = set(chd[1])
+        self.time = chd[2]
 
 
 class FileContents:

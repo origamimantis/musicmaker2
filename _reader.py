@@ -39,12 +39,12 @@ def _chord_gen(the_file : open):
     '''Generator that yields each chord in a file.'''
 
     for line in the_file:
-        for item in line.split(','):
-            yield frozenset(item.strip()[1:-1].split(';'))
+        chd, name = line.rstrip().split()
+        yield name, frozenset(chd.strip()[1:-1].split(';'))
 
 
 def update_dict(pattern_dict, weight, songchords,directory = "files"):
-    
+    '''populate chords dict with chords from files.'''
     failed = False
     for progfile in Path(directory).iterdir():
 

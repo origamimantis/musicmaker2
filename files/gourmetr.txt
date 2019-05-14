@@ -1,47 +1,47 @@
-{C;Eb;G}
-{F;Ab;C}
-{C;Eb;G}
-{F;Ab;C;Eb;G}
-{G;Bb;D;F}
-{C;Eb;G}
-{C;Eb;G}
-{F;Ab;C}
-{C;Eb;G}
-{F;Ab;C;Eb;G}
-{G;Bb;D;F}
-{C;Eb;G}
-{F;Ab;C}
-{C;Eb;G}
-{F;Ab;C}
-{C;Eb;G}
-{F;Ab;C}
-{C;Eb;G}
-{G;Bb;D;F}
-{C;Eb;G}
-{F;Ab;C}
-{C;Eb;G}
-{F;Ab;C}
-{C;Eb;G}
-{F;Ab;C}
-{C;Eb;G}
-{G;Bb;D;F}
-{C;Eb;G}
-{Eb;G;Bb}
-{Bb;D;F}
-{C;Eb;G}
-{G;Bb;D;F}
-{F;Ab;C;Eb}
-{Bb;D;F}
-{Eb;G;Bb}
-{Cb;Eb;Gb}
-{Bb;D;F}
-{Eb;G;Bb}
-{Bb;D;F}
-{C;Eb;G}
-{G;Bb;D;F}
-{F;Ab;C;Eb}
-{Bb;D;F}
-{Eb;G;Bb}
-{Ab;C;Eb}
-{D;F;A}
-{G;B;D;F}
+{C;Eb;G}   Cm
+{F;Ab;C}   Fm
+{C;Eb;G}   Cm
+{F;Ab;C;Eb;G}   Fm9
+{G;Bb;D;F}   G-7
+{C;Eb;G}   Cm
+{C;Eb;G}   Cm
+{F;Ab;C}   Fm
+{C;Eb;G}   Cm
+{F;Ab;C;Eb;G}   Fm9
+{G;Bb;D;F}   G-7
+{C;Eb;G}   Cm
+{F;Ab;C}   Fm
+{C;Eb;G}   Cm
+{F;Ab;C}   Fm
+{C;Eb;G}   Cm
+{F;Ab;C}   Fm
+{C;Eb;G}   Cm
+{G;Bb;D;F}   G-7
+{C;Eb;G}   Cm
+{F;Ab;C}   Fm
+{C;Eb;G}   Cm
+{F;Ab;C}   Fm
+{C;Eb;G}   Cm
+{F;Ab;C}   Fm
+{C;Eb;G}   Cm
+{G;Bb;D;F}   G-7
+{C;Eb;G}   Cm
+{Eb;G;Bb}   Eb
+{Bb;D;F}   Bb
+{C;Eb;G}   Cm
+{G;Bb;D;F}   G-7
+{F;Ab;C;Eb}   F-7
+{Bb;D;F}   Bb
+{Eb;G;Bb}   Eb
+{Cb;Eb;Gb}   Cb
+{Bb;D;F}   Bb
+{Eb;G;Bb}   Eb
+{Bb;D;F}   Bb
+{C;Eb;G}   Cm
+{G;Bb;D;F}   G-7
+{F;Ab;C;Eb}   F-7
+{Bb;D;F}   Bb
+{Eb;G;Bb}   Eb
+{Ab;C;Eb}   Ab
+{D;F;A}   Dm
+{G;B;D;F}   G7

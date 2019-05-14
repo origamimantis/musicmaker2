@@ -1,17 +1,17 @@
-{G;B;D}
-{B;D#;F#;A}
-{C;E;G}
-{C;Eb;G}
-{G;B;D}
-{B;D#;F#;A}
-{C;E;G}
-{C;Eb;G}
-{G;B;D}
-{B;D#;F#;A}
-{C;E;G}
-{C;Eb;G}
-{G;B;D}
-{B;D#;F#;A}
-{C;E;G}
-{C;Eb;G}
-{G;B;D;F#}
+{G;B;D}   G
+{B;D#;F#;A}   B7
+{C;E;G}   C
+{C;Eb;G}   Cm
+{G;B;D}   G
+{B;D#;F#;A}   B7
+{C;E;G}   C
+{C;Eb;G}   Cm
+{G;B;D}   G
+{B;D#;F#;A}   B7
+{C;E;G}   C
+{C;Eb;G}   Cm
+{G;B;D}   G
+{B;D#;F#;A}   B7
+{C;E;G}   C
+{C;Eb;G}   Cm
+{G;B;D;F#}   Gmaj7

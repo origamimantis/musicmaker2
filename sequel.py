@@ -32,7 +32,7 @@ if __name__ == '__main__':
         print("Progression generated successfully!")
         print("Processing data...\n")
         
-        song = [x for x in zip(the_progression, the_rhythms)]
+        song = [(n,c,t) for (n,c),t in zip(the_progression, the_rhythms)]
         p = build_class(song)
         print('\n')
         

@@ -1,0 +1,17 @@
+{G;B;D}
+{B;D#;F#;A}
+{C;E;G}
+{C;Eb;G}
+{G;B;D}
+{B;D#;F#;A}
+{C;E;G}
+{C;Eb;G}
+{G;B;D}
+{B;D#;F#;A}
+{C;E;G}
+{C;Eb;G}
+{G;B;D}
+{B;D#;F#;A}
+{C;E;G}
+{C;Eb;G}
+{G;B;D;F#}
