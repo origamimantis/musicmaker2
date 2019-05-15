@@ -271,7 +271,6 @@ class FileContents:
                 et.SubElement(tmp3, 'rest')
 
             et.SubElement(tmp3, 'duration').text = str(chd.time)
-            print(chd.time)
             et.SubElement(tmp3, 'voice').text = '1'
             et.SubElement(tmp3, 'type').text = strtime
             if isdotted:
