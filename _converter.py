@@ -19,14 +19,14 @@ NOTELEN = { '6' : ('whole', True),
             '4' : ('whole', False ),
             '3' : ('half' , True),
             '2' : ('half' , False),
-            '1.5' : ('quarter', True),
+            '3/2' : ('quarter', True),
             '1' : ('quarter', False),
-            '0.5':('eighth', False)}
+            '1/2':('eighth', False)}
 
 
 
 class Progression:
-    def __init__(self, the_progression : [(frozenset, str)]):
+    def __init__(self, the_progression : [(frozenset, str, [str])]):
         self.length = len(the_progression)
         lenth = len(str(self.length))
         self.first = Chord(the_progression[0])
@@ -43,7 +43,8 @@ class Chord:
         self.next = None
         self.name = chd[0]
         self.notes = set(chd[1])
-        self.time = chd[2]
+        self.time = str(chd[2])
+        self.rtime = chd[2]
 
 
 class FileContents:
@@ -56,12 +57,21 @@ class FileContents:
         self._credit()
         self._partlist()
         subpart = self._add_part(True)
-        curr = progression.first
-        meas = 1
-        while curr is not None:
+        
+        self.measls = []
+        self.curmeastree = None
 
+        curr = progression.first
+        time = 0
+        meas = 1
+        
+        while curr is not None:
+            print(time, meas)
             self._add_chords(meas, curr, subpart, True)
-            meas += 1
+            time += curr.rtime
+            if time % 4 == 0:
+                meas += 1
+                time = 0
             curr = curr.next
 
 
@@ -226,13 +236,15 @@ class FileContents:
 
     def _add_chords(self, measnum:int, chd, uptree, is_chord:bool):
 
-        tmp2 = et.SubElement(uptree, 'measure')
-        tmp2.set('number' , str(measnum))
-        tmp2.set('width' , '320')
-        if measnum == 1: self._meas_header(tmp2, is_chord)  
+        if measnum not in self.measls:
+            self.curmeastree = et.SubElement(uptree, 'measure')
+            self.curmeastree.set('number' , str(measnum))
+            self.curmeastree.set('width' , '320')
+            if measnum == 1: self._meas_header(self.curmeastree, is_chord)
+            self.measls.append(measnum)
         
 
-        self._add_notes(chd, tmp2)
+        self._add_notes(chd, self.curmeastree )
 
 
     def _add_notes(self, chd, up):

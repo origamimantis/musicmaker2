@@ -1,5 +1,6 @@
 from collections import defaultdict
-from _reader     import update_dict, update_rlist, generate_prgsn, generate_rhythm
+from _reader     import update_dict, update_rlist
+from _generator  import generate_prgsn, generate_rhythm, generate_melody
 from _inputter   import input_int, input_yn
 from _converter  import build_class, FileContents
 
@@ -32,7 +33,13 @@ if __name__ == '__main__':
         print("Progression generated successfully!")
         print("Processing data...\n")
         
+        s = generate_melody((n,c,t) for (n,c),t in zip(the_progression, the_rhythms))
         song = [(n,c,t) for (n,c),t in zip(the_progression, the_rhythms)]
+        
+        ## TODO: update song with a generate_melody function on each chord -- song 
+        #        should be now ( [ (chordname , chord , time) ],  [ (note, time) ] )
+        #        When making, consider making song a generator rather than a list.
+
         p = build_class(song)
         print('\n')
         
