@@ -31,7 +31,7 @@ def generate_prgsn(pattern_dict, song_chd_dict, weight: int, total_len: int , cu
 
 
 def generate_rhythm(rhythmslist, total_len: int , curl: bool = False) -> [str]:
-    '''Generates and returns list of chord progressions; option to continue if next chord isn't found.'''
+    '''Generates and returns list of rhythms'''
   
     rtms = []
 

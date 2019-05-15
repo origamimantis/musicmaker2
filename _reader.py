@@ -21,6 +21,9 @@ class notelen:
         self.bot = bot
     def __str__(self):
         return f'{self.top}/{self.bot}' if self.bot != 1 else str(self.top)
+    def __call__(self):
+        return round(self.top/self.bot, 1) if self.bot != 1 else self.top
+
     def __add__(self, right):
         # only define for notelen + notelen
         return notelen(self.top*right.bot + self.bot*right.top, self.bot*right.bot)
@@ -93,42 +96,4 @@ def update_rlist(rtmlist, directory = 'rhythms'):
                     parse_rhy(rtmlist, the_file)
                 except AssertionError:
                     pass
-
-
-def generate_prgsn(pattern_dict, song_chd_dict, weight: int, total_len: int , curl: bool = False) -> [str]:
-    '''Generates and returns list of chord progressions; option to continue if next chord isn't found.'''
-    
-    prgsn = list(randchoice(tuple(pattern_dict.keys())))
-    failed = False 
-
-    while len(prgsn) < total_len:
-        try:
-            k =  randchoice(tuple(pattern_dict[  tuple(prgsn[-weight:])  ]  ))
-            prgsn.append(k)
-        
-        # IndexError because at this point pattern_dict is a dict and not a dict, and 
-        except KeyError:
-            failed = True
-            print(f'Unable to find next chord at chord {len(prgsn)}, choosing new seed.')
-            if curl:
-                h =  randchoice( tuple(song_chd_dict))
-                prgsn.extend(randchoice(tuple(song_chd_dict[ h ])))
-                print(h)
-                
-            else: break
-    if failed: print()
-
-    return prgsn[:total_len]
-
-
-def generate_rhythm(rhythmslist, total_len: int , curl: bool = False) -> [str]:
-    '''Generates and returns list of chord progressions; option to continue if next chord isn't found.'''
-  
-    rtms = []
-
-    while len(rtms) < total_len:
-        k =  randchoice(rhythmslist)
-        rtms.extend(k)
-
-    return rtms[:total_len]
 

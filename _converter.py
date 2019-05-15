@@ -15,13 +15,13 @@ OCTAVES = {"A" : (2,3),
 
 ALTER = { "b" : '-1', "#" : '1' , "%" : '-2' , "x" : '2'}
 
-NOTELEN = { '6' : ('whole', True),
-            '4' : ('whole', False ),
-            '3' : ('half' , True),
-            '2' : ('half' , False),
-            '3/2' : ('quarter', True),
-            '1' : ('quarter', False),
-            '1/2':('eighth', False)}
+NOTELEN = { 6   : ('whole', True),
+            4   : ('whole', False ),
+            3   : ('half' , True),
+            2   : ('half' , False),
+            1.5 : ('quarter', True),
+            1   : ('quarter', False),
+            0.5 :('eighth', False)}
 
 
 
@@ -43,7 +43,7 @@ class Chord:
         self.next = None
         self.name = chd[0]
         self.notes = set(chd[1])
-        self.time = str(chd[2])
+        self.time = chd[2]()
         self.rtime = chd[2]
 
 
@@ -270,7 +270,8 @@ class FileContents:
             else:
                 et.SubElement(tmp3, 'rest')
 
-            et.SubElement(tmp3, 'duration').text = chd.time
+            et.SubElement(tmp3, 'duration').text = str(chd.time)
+            print(chd.time)
             et.SubElement(tmp3, 'voice').text = '1'
             et.SubElement(tmp3, 'type').text = strtime
             if isdotted:
