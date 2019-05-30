@@ -56,20 +56,23 @@ def generate_melody(song, rtmlist):
         for x in randchoice(rtmlist):
             time += x
             
-            n = CHORD.match(curnote[0])
+            if randchoice(range(10)) >= REST*10:
+                n = CHORD.match(curnote[0])
 
-            ind, rel, notes, passing = CHORDS[n.group(3)]
-            
-            base = NOTE_IDX[n.group(1)] + ACCID[n.group(2)]
-            bsidx = NOTE_ORD.index(n.group(1))
-            gen =  randchoice(notes*5 + passing)
-            sgna = ACCID[n.group(2)]//abs(ACCID[n.group(2)]) if ACCID[n.group(2)] != 0 else 1
-            for add in (0, sgna, 2*sgna, -sgna, -2*sgna):
-                if gen + add in NOTE_IDW:
-                    visnote = NOTE_IDW[gen + add]
-                    break
-            l.append( (x, visnote + ACCIDW[ add] ) )
-            #l.append( visnote + ACCIDW[(base + ind[x])%12 - NOTE_IDX[visnote]])
+                ind, rel, notes, passing = CHORDS[n.group(3)]
+                
+                base = NOTE_IDX[n.group(1)] + ACCID[n.group(2)]
+                bsidx = NOTE_ORD.index(n.group(1))
+                gen =  randchoice(notes*5 + passing)
+                sgna = ACCID[n.group(2)]//abs(ACCID[n.group(2)]) if ACCID[n.group(2)] != 0 else 1
+                for add in (0, sgna, 2*sgna, -sgna, -2*sgna):
+                    if gen + add in NOTE_IDW:
+                        visnote = NOTE_IDW[gen + add]
+                        break
+                l.append( (x, visnote + ACCIDW[ add] ) )
+                #l.append( visnote + ACCIDW[(base + ind[x])%12 - NOTE_IDX[visnote]])
+            else:
+                l.append((x,'REST'))
         
         try:
             while curtime < time:
