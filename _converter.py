@@ -15,13 +15,16 @@ OCTAVES = {"A" : (2,3),
 
 ALTER = { "b" : '-1', "#" : '1' , "%" : '-2' , "x" : '2'}
 
-NOTELEN = { 6   : ('whole', True),
-            4   : ('whole', False ),
-            3   : ('half' , True),
-            2   : ('half' , False),
-            1.5 : ('quarter', True),
-            1   : ('quarter', False),
-            0.5 :('eighth', False)}
+NOTELEN = { '6'   : ('whole'  , True ),
+            '4'   : ('whole'  , False),
+            '3'   : ('half'   , True ),
+            '2'   : ('half'   , False),
+            '3/2' : ('quarter', True ),
+            '1'   : ('quarter', False),
+            '3/4' : ('eighth' , True ),
+            '1/2' : ('eighth' , False),
+            '3/8' : ('16th'   , True ),
+            '1/4' : ('16th'   , False)}
 
 
 
@@ -30,14 +33,27 @@ class Progression:
         self.length = len(the_progression)
         lenth = len(str(self.length))
         self.first = Chord(the_progression[0])
-        print(f'Chords processed: %{lenth}s / {self.length}    ' % 1 , end = '\r')
         tmp = self.first
         for chdnum in range(1, self.length):
             tmp.next = Chord(the_progression[chdnum])
             tmp = tmp.next
-            print(f'Processed chord %{lenth}s / {self.length}    ' % (chdnum+1) , end = '\r')
-            
-
+ 
+class Melody:
+    def __init__(self, the_progression : [( int, str)]):
+        self.length = len(the_progression)
+        self.first = Note(the_progression[0])
+        tmp = self.first
+        for chdnum in range(1, self.length):
+            tmp.next = Note(the_progression[chdnum])
+            tmp = tmp.next
+                    
+class Note:
+    def __init__(self, note):
+        self.next = None
+        self.rtime, self.note = note
+        self.time = self.rtime()
+    def __str__(self):
+        return '--'+str(self.time)
 class Chord:
     def __init__(self, chd: frozenset):
         self.next = None
@@ -48,7 +64,7 @@ class Chord:
 
 
 class FileContents:
-    def __init__(self, title, progression):
+    def __init__(self, title, progression, melody):
         self.body = et.Element('score-partwise')
         self.title = title
 
@@ -56,23 +72,40 @@ class FileContents:
         self._identification()
         self._credit()
         self._partlist()
-        subpart = self._add_part(True)
         
         self.measls = []
+        self.measlsm = []
         self.curmeastree = None
+        self.melmeastree = None
 
+        
+        sp = et.SubElement(self.body, 'part')
+        sp.set('id', 'P1')
+        
         curr = progression.first
         time = 0
         meas = 1
-        
         while curr is not None:
-            print(time, meas)
-            self._add_chords(meas, curr, subpart, True)
+            self._add_chords(meas, curr, sp, True)
             time += curr.rtime
             if time % 4 == 0:
                 meas += 1
                 time = 0
             curr = curr.next
+
+        mp = et.SubElement(self.body, 'part')
+        mp.set('id', 'P2')
+        
+        mcurr = melody.first
+        time = 0
+        meas = 1
+        while mcurr is not None:
+            self._add_not(meas, mcurr, mp, False)
+            time += mcurr.rtime
+            if time % 4 == 0:
+                meas += 1
+                time = 0
+            mcurr = mcurr.next
 
 
     def _work(self):
@@ -180,30 +213,33 @@ class FileContents:
         tmp2.text = 'Composer'
 
     def _partlist(self):
-
         tmp1 = et.SubElement(self.body, 'part-list')
-        
-        tmp2 = et.SubElement(tmp1, 'score-part')
-        tmp2.set('id', 'P1')
-        
-        et.SubElement(tmp2, 'part-name').text = 'Piano'
-        et.SubElement(tmp2, 'part-abbreviation').text = 'Pno.'
-        
-        tmp3 = et.SubElement(tmp2, 'score-instrument')
-        tmp3.set('id', 'P1-I1')
-        et.SubElement(tmp3, 'instrument-name').text = 'Piano'
+        def _part(n):
+            
+            tmp2 = et.SubElement(tmp1, 'score-part')
+            tmp2.set('id', 'P'+n)
+            
+            et.SubElement(tmp2, 'part-name').text = 'Piano'
+            et.SubElement(tmp2, 'part-abbreviation').text = 'Pno.'
+            
+            tmp3 = et.SubElement(tmp2, 'score-instrument')
+            tmp3.set('id', 'P'+n+'-I1')
+            et.SubElement(tmp3, 'instrument-name').text = 'Piano'
 
-        tmp3 = et.SubElement(tmp2, 'midi-device')
-        tmp3.set('id', 'P1-I1')
-        tmp3.set('port','1')
-        
-        tmp3 = et.SubElement(tmp2, 'midi-instrument')
-        tmp3.set('id', 'P1-I1')
-        
-        et.SubElement(tmp3, 'midi-channel').text = '1'
-        et.SubElement(tmp3, 'midi-program').text = '1'
-        et.SubElement(tmp3, 'volume').text = '78.7402'
-        et.SubElement(tmp3, 'pan').text = '0'
+            tmp3 = et.SubElement(tmp2, 'midi-device')
+            tmp3.set('id', 'P'+n+'-I1')
+            tmp3.set('port',n)
+            
+            tmp3 = et.SubElement(tmp2, 'midi-instrument')
+            tmp3.set('id', 'P'+n+'-I1')
+            
+            et.SubElement(tmp3, 'midi-channel').text = n
+            et.SubElement(tmp3, 'midi-program').text = n
+            et.SubElement(tmp3, 'volume').text = '78.7402'
+            et.SubElement(tmp3, 'pan').text = '0'
+
+        _part('2')
+        _part('1')
 
     def _meas_header(self, uptree, is_chord):
         tmp3 = et.SubElement(uptree, 'print')
@@ -226,6 +262,13 @@ class FileContents:
         tmp4 = et.SubElement(tmp3, 'clef')
         et.SubElement(tmp4, 'sign').text = 'F' if is_chord else 'G'
         et.SubElement(tmp4, 'line').text = '4' if is_chord else '2'
+        if not is_chord:
+            tmp3 = et.SubElement(uptree, 'direction')
+            tmp3.set('placement','below')
+            tmp4 = et.SubElement(tmp3, 'direction-type')
+            tmp5 = et.SubElement(tmp4, 'dynamics')
+            et.SubElement(tmp5, 'ff')
+            et.SubElement(tmp3, 'sound').set('dynamics','140.00')
 
     def _add_part(self, is_chord):
 
@@ -245,6 +288,39 @@ class FileContents:
         
 
         self._add_notes(chd, self.curmeastree )
+
+    def _add_not(self, measnum:int, note, uptree, is_chord:bool):
+
+        if measnum not in self.measlsm:
+            self.melmeastree = et.SubElement(uptree, 'measure')
+            self.melmeastree.set('number' , str(measnum))
+            self.melmeastree.set('width' , '320')
+            if measnum == 1: self._meas_header(self.melmeastree, is_chord)
+            self.measlsm.append(measnum)
+        
+        
+        strtime, isdotted = NOTELEN[note.time]
+        tmp3 = et.SubElement(self.melmeastree, 'note')
+        if note.note != 'REST':
+            tmp4 = et.SubElement(tmp3, 'pitch')
+      
+            et.SubElement(tmp4, 'step').text = note.note[0]
+       
+            if len(note.note) == 2:
+                et.SubElement(tmp4, 'alter').text = ALTER[note.note[1]]
+        
+            et.SubElement(tmp4, 'octave').text = str(randint(*OCTAVES[note.note[0]]) + 2)
+        else:
+            et.SubElement(tmp3, 'rest')
+
+        et.SubElement(tmp3, 'duration').text = str(eval(note.time))
+        et.SubElement(tmp3, 'voice').text = '1'
+        et.SubElement(tmp3, 'type').text = strtime
+        if isdotted:
+            et.SubElement(tmp3, 'dot')
+    
+
+
 
 
     def _add_notes(self, chd, up):
@@ -270,12 +346,12 @@ class FileContents:
             else:
                 et.SubElement(tmp3, 'rest')
 
-            et.SubElement(tmp3, 'duration').text = str(chd.time)
+            et.SubElement(tmp3, 'duration').text = str(eval(chd.time))
             et.SubElement(tmp3, 'voice').text = '1'
             et.SubElement(tmp3, 'type').text = strtime
             if isdotted:
                 et.SubElement(tmp3, 'dot')
-                
+                    
 
     def the_xml(self):
         print('Writing to out.txt...\n')

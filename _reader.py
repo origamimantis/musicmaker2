@@ -22,11 +22,16 @@ class notelen:
     def __str__(self):
         return f'{self.top}/{self.bot}' if self.bot != 1 else str(self.top)
     def __call__(self):
+        return str(self)
         return round(self.top/self.bot, 1) if self.bot != 1 else self.top
 
     def __add__(self, right):
         # only define for notelen + notelen
         return notelen(self.top*right.bot + self.bot*right.top, self.bot*right.bot)
+    def __rsub__(self, left):
+        return notelen(left*self.bot - self.top, self.bot)
+    def __sub__(self, right):
+        return notelen(right.bot*self.top - self.bot*right.top, self.bot*right.bot)
     def __radd__(self, left):
         # used implicitly in sum(). type(left) is int.
         return notelen(left*self.bot+self.top, self.bot)
@@ -35,6 +40,16 @@ class notelen:
         return notelen(self.top % (self.bot*right), self.bot)
     def __eq__(self, right):
         return self.top == self.bot*right
+    def __lt__(self, right):
+        if   type(right) is int:
+            return self.top < right*self.bot
+        elif type(right) is notelen:
+            return right.bot*self.top < right.top*self.bot
+    def __gt__(self, right):
+        if type(right) is int:
+            return self.top > right*self.bot
+        elif type(right) is notelen:
+            return right.bot*self.top > right.top*self.bot
 
 
 
@@ -96,4 +111,3 @@ def update_rlist(rtmlist, directory = 'rhythms'):
                     parse_rhy(rtmlist, the_file)
                 except AssertionError:
                     pass
-
