@@ -63,7 +63,7 @@ def generate_melody(song, rtmlist):
                 
                 base = NOTE_IDX[n.group(1)] + ACCID[n.group(2)]
                 bsidx = NOTE_ORD.index(n.group(1))
-                gen =  randchoice(notes*5 + passing)
+                gen =  randchoice(notes*2 + (passing if time % 1 else notes))
                 sgna = ACCID[n.group(2)]//abs(ACCID[n.group(2)]) if ACCID[n.group(2)] != 0 else 1
                 for add in (0, sgna, 2*sgna, -sgna, -2*sgna):
                     if gen + add in NOTE_IDW:

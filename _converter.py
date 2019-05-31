@@ -262,13 +262,13 @@ class FileContents:
         tmp4 = et.SubElement(tmp3, 'clef')
         et.SubElement(tmp4, 'sign').text = 'F' if is_chord else 'G'
         et.SubElement(tmp4, 'line').text = '4' if is_chord else '2'
-        if not is_chord:
-            tmp3 = et.SubElement(uptree, 'direction')
-            tmp3.set('placement','below')
-            tmp4 = et.SubElement(tmp3, 'direction-type')
-            tmp5 = et.SubElement(tmp4, 'dynamics')
-            et.SubElement(tmp5, 'ff')
-            et.SubElement(tmp3, 'sound').set('dynamics','140.00')
+        #if not is_chord:
+        #    tmp3 = et.SubElement(uptree, 'direction')
+        #    tmp3.set('placement','below')
+        #    tmp4 = et.SubElement(tmp3, 'direction-type')
+        #    tmp5 = et.SubElement(tmp4, 'dynamics')
+        #    et.SubElement(tmp5, 'ff')
+        #    et.SubElement(tmp3, 'sound').set('dynamics','140.00')
 
     def _add_part(self, is_chord):
 
